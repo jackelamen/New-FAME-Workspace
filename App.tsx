@@ -7,7 +7,6 @@ import StrategicPivot from './components/StrategicPivot.tsx';
 import Pillars from './components/Pillars.tsx';
 import CommerceEngine from './components/CommerceEngine.tsx';
 import Ecosystem from './components/Ecosystem.tsx';
-import PortfolioShowcase from './components/PortfolioShowcase.tsx';
 import Footer from './components/Footer.tsx';
 import ContactModal from './components/ContactModal.tsx';
 
@@ -64,12 +63,6 @@ const App: React.FC = () => {
         <section id="ecosystem" className="py-16 md:py-24 bg-[#05070a] relative">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <Ecosystem />
-          </div>
-        </section>
-
-        <section id="portfolio" className="py-16 md:py-24 bg-[#05070a]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <PortfolioShowcase />
           </div>
         </section>
 
