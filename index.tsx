@@ -2,12 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 
-const mountApp = () => {
+const init = () => {
   const container = document.getElementById('root');
-  if (!container) {
-    console.error("Mounting Error: #root element not found in DOM.");
-    return;
-  }
+  if (!container) return;
 
   try {
     const root = createRoot(container);
@@ -16,13 +13,13 @@ const mountApp = () => {
         <App />
       </React.StrictMode>
     );
-  } catch (err) {
-    console.error("Critical Failure during React Render:", err);
+  } catch (error) {
+    console.error("React Render Error:", error);
   }
 };
 
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  mountApp();
+  init();
 } else {
-  document.addEventListener('DOMContentLoaded', mountApp);
+  document.addEventListener('DOMContentLoaded', init);
 }
