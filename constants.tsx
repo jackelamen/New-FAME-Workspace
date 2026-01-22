@@ -1,5 +1,5 @@
 
-import { Pillar, RoadmapPhase, MetricRow, Project, TimelineEvent } from './types';
+import { Pillar, RoadmapPhase, MetricRow, Project, TimelineEvent } from './types.ts';
 
 export const PILLARS: Pillar[] = [
   {

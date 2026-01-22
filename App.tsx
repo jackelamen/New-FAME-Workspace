@@ -1,16 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Ticker from './components/Ticker';
-import CombinedStory from './components/CombinedStory';
-import StrategicPivot from './components/StrategicPivot';
-import Pillars from './components/Pillars';
-import CommerceEngine from './components/CommerceEngine';
-import Ecosystem from './components/Ecosystem';
-import PortfolioShowcase from './components/PortfolioShowcase';
-import Footer from './components/Footer';
-import ContactModal from './components/ContactModal';
+import Navbar from './components/Navbar.tsx';
+import Hero from './components/Hero.tsx';
+import Ticker from './components/Ticker.tsx';
+import CombinedStory from './components/CombinedStory.tsx';
+import StrategicPivot from './components/StrategicPivot.tsx';
+import Pillars from './components/Pillars.tsx';
+import CommerceEngine from './components/CommerceEngine.tsx';
+import Ecosystem from './components/Ecosystem.tsx';
+import PortfolioShowcase from './components/PortfolioShowcase.tsx';
+import Footer from './components/Footer.tsx';
+import ContactModal from './components/ContactModal.tsx';
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);

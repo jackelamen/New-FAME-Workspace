@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PROJECTS } from '../constants';
+import { PROJECTS } from '../constants.tsx';
 
 const PortfolioShowcase: React.FC = () => {
   return (
@@ -14,7 +14,6 @@ const PortfolioShowcase: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-24">
         {PROJECTS.map((project, i) => (
           <div key={project.id} className={`group cursor-pointer ${i % 2 === 1 ? 'lg:mt-32' : ''}`}>
-            {/* Project Labeling - Matching Screenshot Aesthetic */}
             <div className="flex items-center gap-3 mb-4">
               <span className="text-[11px] font-black uppercase tracking-[0.2em] text-[#ff4d00]">
                 {project.category}

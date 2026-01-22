@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { PILLARS } from '../constants';
+import { PILLARS } from '../constants.tsx';
 
 const Pillars: React.FC = () => {
   return (
@@ -37,14 +37,12 @@ const Pillars: React.FC = () => {
             </div>
 
             <div className="relative z-10 flex flex-col h-full p-8 md:p-16">
-              {/* Icon Box */}
               <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#111] border border-white/10 flex items-center justify-center mb-8 md:mb-12 shadow-2xl group-hover:border-orange-500/50 transition-all duration-500`}>
                 <span className={`font-black text-3xl md:text-4xl text-white group-hover:text-orange-500`}>
                   {pillar.icon}
                 </span>
               </div>
 
-              {/* Text Content */}
               <div className="mb-8">
                 <h3 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-4 text-white leading-none">
                   {pillar.title}
@@ -61,7 +59,6 @@ const Pillars: React.FC = () => {
               </p>
             </div>
             
-            {/* Background Glow */}
             <div className={`absolute -bottom-20 -right-20 w-64 h-64 md:w-96 md:h-96 bg-gradient-to-br ${pillar.color} opacity-0 group-hover:opacity-[0.15] blur-[120px] transition-opacity duration-1000`}></div>
           </div>
         ))}

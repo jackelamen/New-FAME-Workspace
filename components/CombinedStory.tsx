@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { TIMELINE } from '../constants';
+import { TIMELINE } from '../constants.tsx';
 
 const CombinedStory: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -8,12 +8,9 @@ const CombinedStory: React.FC = () => {
 
   return (
     <div className="bg-[#fdfcfb] text-[#05070a] overflow-hidden">
-      {/* Container spacing */}
       <section className="pt-12 pb-32">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 w-full">
-          {/* History Timeline Part */}
           <div className="relative mb-12 md:mb-16">
-            {/* Header row */}
             <div className="flex flex-col mb-4">
               <div className="flex items-center gap-3 mb-2">
                 <div className="w-10 h-[1.5px] bg-[#ff4d00]"></div>
@@ -44,7 +41,6 @@ const CombinedStory: React.FC = () => {
               </div>
             </div>
 
-            {/* Content Area */}
             <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mt-[-1rem] md:mt-[-3rem]">
               <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-start min-h-[200px] md:min-h-[350px]">
                 <div className="absolute inset-0 flex items-center justify-center lg:justify-start pointer-events-none select-none">
@@ -84,7 +80,6 @@ const CombinedStory: React.FC = () => {
             </div>
           </div>
 
-          {/* Narrative Points */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-12 items-start border-t border-[#05070a]/5 pt-12 md:pt-16">
             <div className="space-y-16">
               <div className="space-y-4">
