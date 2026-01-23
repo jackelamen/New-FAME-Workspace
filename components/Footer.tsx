@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Footer: React.FC = () => {
@@ -8,10 +7,9 @@ const Footer: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between gap-20 mb-32">
           <div className="max-w-md">
             <div className="flex items-center gap-4 mb-10">
-              {/* Logo Text Only - Removed 'F' Icon Box per instructions */}
               <div className="flex flex-col">
                 <span className="font-black text-2xl tracking-tighter uppercase leading-none">
-                  FAME <span className="text-orange-500">ENTERTAINMENT</span>
+                  FAME <span className="text-[#40E0D0]">ENTERTAINMENT</span>
                 </span>
                 <span className="text-xs font-bold text-white/40 tracking-[0.3em] uppercase mt-1">GROUP</span>
               </div>
@@ -21,7 +19,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex gap-10">
               {['Instagram', 'LinkedIn', 'YouTube'].map((social) => (
-                <a key={social} href="#" className="text-[10px] font-black tracking-widest text-white/40 hover:text-[#ff4d00] transition-colors uppercase">
+                <a key={social} href="#" className="text-[10px] font-black tracking-widest text-white/40 hover:text-[#40E0D0] transition-colors uppercase">
                   {social}
                 </a>
               ))}
@@ -32,10 +30,10 @@ const Footer: React.FC = () => {
             <div>
               <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-white/20 mb-10">Navigation</h4>
               <ul className="space-y-4 text-sm font-bold uppercase tracking-widest text-white/50">
-                <li><a href="#about" className="hover:text-[#ff4d00] transition-colors">Introduction</a></li>
-                <li><a href="#pillars" className="hover:text-[#ff4d00] transition-colors">4 Pillars</a></li>
-                <li><a href="#commerce" className="hover:text-[#ff4d00] transition-colors">Commerce</a></li>
-                <li><a href="#history" className="hover:text-[#ff4d00] transition-colors">Our History</a></li>
+                <li><a href="#about" className="hover:text-[#40E0D0] transition-colors">Introduction</a></li>
+                <li><a href="#pillars" className="hover:text-[#40E0D0] transition-colors">4 Pillars</a></li>
+                <li><a href="#commerce" className="hover:text-[#40E0D0] transition-colors">Commerce</a></li>
+                <li><a href="#history" className="hover:text-[#40E0D0] transition-colors">Our History</a></li>
               </ul>
             </div>
             <div>

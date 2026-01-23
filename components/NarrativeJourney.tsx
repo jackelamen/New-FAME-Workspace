@@ -1,19 +1,18 @@
-
 import React from 'react';
 
 const NarrativeJourney: React.FC = () => {
   return (
     <section className="bg-[#fdfcfb] text-[#05070a] py-32 border-t border-[#05070a]/10 relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/[0.03] blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-600/[0.03] blur-[120px] rounded-full pointer-events-none"></div>
       
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
         <div className="flex flex-col gap-24">
           
           {/* Header */}
           <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-4 text-[#ff4d00] text-[10px] font-black uppercase tracking-[0.5em] mb-8">
-              <div className="w-12 h-[1px] bg-[#ff4d00]"></div>
+            <div className="inline-flex items-center gap-4 text-[#40E0D0] text-[10px] font-black uppercase tracking-[0.5em] mb-8">
+              <div className="w-12 h-[1px] bg-[#40E0D0]"></div>
               Our Narrative
             </div>
             <h2 className="text-6xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] mb-12">
@@ -30,7 +29,7 @@ const NarrativeJourney: React.FC = () => {
               <div className="space-y-6">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">01 / The Why</span>
                 <p className="text-2xl md:text-4xl font-light leading-tight">
-                  It started with a simple belief: that <span className="text-[#ff4d00] font-black italic">creativity needs a home</span>. We didn't just want to throw parties; we wanted to build a stage where culture could breathe and artists could thrive without boundaries.
+                  It started with a simple belief: that <span className="text-[#40E0D0] font-black italic">creativity needs a home</span>. We didn't just want to throw parties; we wanted to build a stage where culture could breathe and artists could thrive without boundaries.
                 </p>
               </div>
 
@@ -50,7 +49,7 @@ const NarrativeJourney: React.FC = () => {
                 </div>
                 
                 <div className="relative z-10 space-y-6">
-                  <span className="text-[10px] font-black text-[#ff4d00] uppercase tracking-[0.3em]">03 / The Shutdown</span>
+                  <span className="text-[10px] font-black text-[#40E0D0] uppercase tracking-[0.3em]">03 / The Shutdown</span>
                   <h3 className="text-3xl font-black uppercase tracking-tight">When the <br />music stopped.</h3>
                   <p className="text-[#05070a]/40 text-lg leading-relaxed font-light">
                     The global pandemic was an existential threat. In a matter of weeks, the entertainment industry went dark. Our stages were empty, our events were cancelled, and the world we built seemed to pause. But culture never stops—it just changes its medium.
@@ -61,7 +60,7 @@ const NarrativeJourney: React.FC = () => {
               <div className="space-y-6">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">04 / The Transformation</span>
                 <p className="text-2xl md:text-4xl font-black uppercase tracking-tighter leading-tight italic">
-                  WE PIVOTED TO <span className="text-[#ff4d00]">COMMERCE</span>.
+                  WE PIVOTED TO <span className="text-[#40E0D0]">COMMERCE</span>.
                 </p>
                 <p className="text-xl text-[#05070a]/50 leading-relaxed font-light">
                   We realized the skills that made us great at events—storytelling, branding, and community building—were exactly what businesses needed to survive in a digital-first world. We evolved into a <span className="text-[#05070a] font-bold italic">Lifestyle Trading House</span>, bridging the gap between high-potential Korean brands and global commerce.
@@ -72,7 +71,7 @@ const NarrativeJourney: React.FC = () => {
 
           {/* Conclusion */}
           <div className="mt-12 flex flex-col items-center text-center">
-            <div className="w-[1px] h-32 bg-gradient-to-b from-transparent via-[#ff4d00] to-transparent mb-12"></div>
+            <div className="w-[1px] h-32 bg-gradient-to-b from-transparent via-[#40E0D0] to-transparent mb-12"></div>
             <p className="text-[#05070a]/30 text-xs font-black uppercase tracking-[0.5em] max-w-xl">
               Today, FAME stands as a testament to resilience, proving that when culture and commerce collide with purpose, the possibilities are infinite.
             </p>

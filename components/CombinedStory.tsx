@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { TIMELINE } from '../constants.tsx';
 
@@ -13,8 +12,8 @@ const CombinedStory: React.FC = () => {
           <div className="relative mb-12 md:mb-16">
             <div className="flex flex-col mb-4">
               <div className="flex items-center gap-3 mb-2">
-                <div className="w-10 h-[1.5px] bg-[#ff4d00]"></div>
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ff4d00]">Evolution Track</span>
+                <div className="w-10 h-[1.5px] bg-[#40E0D0]"></div>
+                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#40E0D0]">Evolution Track</span>
               </div>
               
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
@@ -30,7 +29,7 @@ const CombinedStory: React.FC = () => {
                       onClick={() => setActiveIndex(index)}
                       className={`px-5 md:px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-500 whitespace-nowrap ${
                         activeIndex === index 
-                          ? 'bg-[#ff4d00] text-white shadow-lg shadow-orange-500/30' 
+                          ? 'bg-[#40E0D0] text-[#05070a] shadow-lg shadow-[#40E0D0]/30' 
                           : 'text-[#05070a]/30 hover:text-[#05070a]/60'
                       }`}
                     >
@@ -49,8 +48,8 @@ const CombinedStory: React.FC = () => {
                   </span>
                 </div>
                 
-                <div className="relative z-10 rotate-[-5deg] bg-[#ff4d00] px-8 py-4 md:px-12 md:py-6 shadow-2xl shadow-orange-500/20 transform transition-transform duration-700 hover:rotate-0 translate-y-4">
-                  <span className="text-white font-black uppercase tracking-[0.2em] text-xs md:text-lg whitespace-nowrap">
+                <div className="relative z-10 rotate-[-5deg] bg-[#40E0D0] px-8 py-4 md:px-12 md:py-6 shadow-2xl shadow-[#40E0D0]/20 transform transition-transform duration-700 hover:rotate-0 translate-y-4">
+                  <span className="text-[#05070a] font-black uppercase tracking-[0.2em] text-xs md:text-lg whitespace-nowrap">
                     {activeEvent.label}
                   </span>
                 </div>
@@ -69,8 +68,8 @@ const CombinedStory: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-4">
                   {activeEvent.milestones.map((milestone, idx) => (
                     <div key={idx} className="flex items-center gap-3 group">
-                      <div className="w-2 h-2 rounded-full bg-[#ff4d00] shadow-[0_0_8px_rgba(255,77,0,0.3)] shrink-0"></div>
-                      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#05070a]/70 group-hover:text-[#ff4d00] transition-colors">
+                      <div className="w-2 h-2 rounded-full bg-[#40E0D0] shadow-[0_0_8px_rgba(64,224,208,0.3)] shrink-0"></div>
+                      <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#05070a]/70 group-hover:text-[#40E0D0] transition-colors">
                         {milestone}
                       </span>
                     </div>
@@ -85,7 +84,7 @@ const CombinedStory: React.FC = () => {
               <div className="space-y-4">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">01 / THE WHY</span>
                 <p className="text-3xl md:text-5xl font-light leading-tight">
-                  It started with a simple belief: that <span className="text-[#ff4d00] font-black italic">creativity needs a home</span>. We didn't just want to throw parties; we wanted to build a stage where culture could breathe.
+                  It started with a simple belief: that <span className="text-[#40E0D0] font-black italic">creativity needs a home</span>. We didn't just want to throw parties; we wanted to build a stage where culture could breathe.
                 </p>
               </div>
 
@@ -103,7 +102,7 @@ const CombinedStory: React.FC = () => {
                   <span className="text-[12rem] font-black leading-none text-[#05070a] italic">2020</span>
                 </div>
                 <div className="relative z-10 space-y-4">
-                  <span className="text-[10px] font-black text-[#ff4d00] uppercase tracking-[0.3em]">03 / THE SHUTDOWN</span>
+                  <span className="text-[10px] font-black text-[#40E0D0] uppercase tracking-[0.3em]">03 / THE SHUTDOWN</span>
                   <h3 className="text-3xl font-black uppercase tracking-tight">WHEN THE MUSIC STOPPED.</h3>
                   <p className="text-[#05070a]/40 text-lg font-light leading-relaxed">
                     The pandemic was an existential threat. In weeks, the industry went dark. Our stages were empty, but culture never stops—it just changes its medium.
@@ -111,10 +110,10 @@ const CombinedStory: React.FC = () => {
                 </div>
               </div>
 
-              <div className="space-y-4 pl-6 border-l-2 border-[#ff4d00]/20">
+              <div className="space-y-4 pl-6 border-l-2 border-[#40E0D0]/20">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">04 / THE TRANSFORMATION</span>
                 <p className="text-3xl font-black uppercase tracking-tighter leading-tight italic">
-                  WE PIVOTED TO <span className="text-[#ff4d00]">COMMERCE</span>.
+                  WE PIVOTED TO <span className="text-[#40E0D0]">COMMERCE</span>.
                 </p>
                 <p className="text-lg text-[#05070a]/50 leading-relaxed font-light">
                   We evolved into a <span className="text-[#05070a] font-bold italic">Lifestyle Trading House</span>, bridging high-potential Korean brands and global commerce.

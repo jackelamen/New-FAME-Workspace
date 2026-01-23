@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PILLARS } from '../constants.tsx';
 
@@ -7,7 +6,7 @@ const Pillars: React.FC = () => {
     <div className="py-10 md:py-20">
       <div className="relative mb-20 md:mb-32">
         <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tighter text-white/10 mb-2 md:mb-[-1.5rem] ml-1">OUR CORE</h2>
-        <h3 className="text-6xl sm:text-8xl md:text-[12rem] font-black uppercase tracking-tighter text-orange-500 leading-none">4 PILLARS</h3>
+        <h3 className="text-6xl sm:text-8xl md:text-[12rem] font-black uppercase tracking-tighter text-[#40E0D0] leading-none">4 PILLARS</h3>
         
         <div className="mt-8 md:mt-12 max-w-2xl">
           <p className="text-white font-bold text-xl md:text-2xl uppercase tracking-tight mb-4">
@@ -37,8 +36,8 @@ const Pillars: React.FC = () => {
             </div>
 
             <div className="relative z-10 flex flex-col h-full p-8 md:p-16">
-              <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#111] border border-white/10 flex items-center justify-center mb-8 md:mb-12 shadow-2xl group-hover:border-orange-500/50 transition-all duration-500`}>
-                <span className={`font-black text-3xl md:text-4xl text-white group-hover:text-orange-500`}>
+              <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#111] border border-white/10 flex items-center justify-center mb-8 md:mb-12 shadow-2xl group-hover:border-[#40E0D0]/50 transition-all duration-500`}>
+                <span className={`font-black text-3xl md:text-4xl text-white group-hover:text-[#40E0D0]`}>
                   {pillar.icon}
                 </span>
               </div>
@@ -47,7 +46,7 @@ const Pillars: React.FC = () => {
                 <h3 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-4 text-white leading-none">
                   {pillar.title}
                 </h3>
-                <div className="inline-block border-y border-white/10 py-3 group-hover:border-orange-500/30 transition-colors">
+                <div className="inline-block border-y border-white/10 py-3 group-hover:border-[#40E0D0]/30 transition-colors">
                   <p className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.3em] text-white/40 group-hover:text-white transition-colors">
                     {pillar.subtitle}
                   </p>

@@ -33,7 +33,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#05070a] text-white overflow-x-hidden selection:bg-orange-500">
+    <div className="min-h-screen bg-[#05070a] text-white overflow-x-hidden selection:bg-[#40E0D0] selection:text-[#05070a]">
       <Navbar scrolled={scrolled} onContactClick={openContact} />
       
       <main className="w-full">

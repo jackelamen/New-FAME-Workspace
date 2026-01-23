@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 
 interface ContactModalProps {
@@ -49,8 +48,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
         {submitted ? (
           <div className="text-center py-20">
-            <div className="w-24 h-24 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-orange-500/40">
-              <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-24 h-24 bg-[#40E0D0] rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-[#40E0D0]/40">
+              <svg className="w-12 h-12 text-[#05070a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
               </svg>
             </div>
@@ -61,8 +60,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
           <div className="space-y-10">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-[2px] bg-orange-500"></div>
-                <span className="text-[11px] font-black uppercase tracking-[0.4em] text-orange-500">Inquiry Portal</span>
+                <div className="w-10 h-[2px] bg-[#40E0D0]"></div>
+                <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[#40E0D0]">Inquiry Portal</span>
               </div>
               <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6">
                 GET IN <br /><span className="text-outline italic">TOUCH</span>
@@ -76,32 +75,32 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input 
                   type="text" required placeholder="NAME" 
-                  className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-orange-500/50 transition-all"
+                  className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-[#40E0D0]/50 transition-all"
                   value={formState.name}
                   onChange={(e) => setFormState({...formState, name: e.target.value})}
                 />
                 <input 
                   type="email" required placeholder="EMAIL" 
-                  className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-orange-500/50 transition-all"
+                  className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-[#40E0D0]/50 transition-all"
                   value={formState.email}
                   onChange={(e) => setFormState({...formState, email: e.target.value})}
                 />
               </div>
               <input 
                 type="text" placeholder="COMPANY / ORGANIZATION" 
-                className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-orange-500/50 transition-all"
+                className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-[#40E0D0]/50 transition-all"
                 value={formState.company}
                 onChange={(e) => setFormState({...formState, company: e.target.value})}
               />
               <textarea 
                 required rows={4} placeholder="HOW CAN WE HELP?" 
-                className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-orange-500/50 transition-all resize-none"
+                className="w-full bg-white/5 border border-white/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-white focus:outline-none focus:border-[#40E0D0]/50 transition-all resize-none"
                 value={formState.message}
                 onChange={(e) => setFormState({...formState, message: e.target.value})}
               />
               <button 
                 type="submit"
-                className="w-full bg-[#ff4d00] hover:bg-[#ff5d1a] py-6 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all hover:scale-[1.01] active:scale-95 shadow-xl shadow-orange-600/20 flex items-center justify-center gap-3 mt-4"
+                className="w-full bg-[#40E0D0] hover:bg-[#6df0e3] text-[#05070a] py-6 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all hover:scale-[1.01] active:scale-95 shadow-xl shadow-[#40E0D0]/20 flex items-center justify-center gap-3 mt-4"
               >
                 Dispatch Message
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>

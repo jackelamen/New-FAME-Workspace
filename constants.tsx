@@ -34,7 +34,7 @@ export const PILLARS: Pillar[] = [
     subtitle: 'Experiences that bring us together',
     description: 'Events are where everything comes to life. From festivals to private parties, we create spaces where people can have fun, meet new friends, and experience brands in person.',
     icon: 'E',
-    color: 'from-[#FF3C00] to-[#C02E00]',
+    color: 'from-[#40E0D0] to-[#26a69a]',
     backgroundImage: 'https://images.unsplash.com/photo-1521763663039-9ac06d263920'
   }
 ];

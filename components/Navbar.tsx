@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 interface NavbarProps { 
@@ -25,7 +24,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
           <div className="flex items-center gap-3">
             <div className="flex flex-col">
                <span className="font-black text-lg sm:text-xl tracking-tighter uppercase leading-none">
-                 FAME <span className="text-orange-500">ENTERTAINMENT</span>
+                 FAME <span className="text-[#40E0D0]">ENTERTAINMENT</span>
                </span>
                <span className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase mt-1 leading-none">GROUP</span>
             </div>
@@ -42,7 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
             <div className="hidden sm:flex flex-col items-center">
               <button 
                 onClick={onContactClick}
-                className="bg-[#ff4d00] hover:bg-[#ff5d1a] px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-orange-600/20 flex items-center gap-3"
+                className="bg-[#40E0D0] hover:bg-[#6df0e3] text-[#05070a] px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#40E0D0]/20 flex items-center gap-3"
               >
                 Get In Touch
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
@@ -71,14 +70,14 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
               key={link.name} 
               href={link.href} 
               onClick={() => setIsOpen(false)}
-              className="text-4xl font-black uppercase tracking-tighter hover:text-orange-500 transition-colors"
+              className="text-4xl font-black uppercase tracking-tighter hover:text-[#40E0D0] transition-colors"
             >
               {link.name}
             </a>
           ))}
           <button 
             onClick={() => { setIsOpen(false); onContactClick(); }}
-            className="mt-8 bg-[#ff4d00] px-10 py-4 rounded-full text-sm font-black uppercase tracking-widest"
+            className="mt-8 bg-[#40E0D0] text-[#05070a] px-10 py-4 rounded-full text-sm font-black uppercase tracking-widest"
           >
             Get In Touch
           </button>
