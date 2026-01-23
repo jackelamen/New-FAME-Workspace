@@ -2,39 +2,47 @@ import React from 'react';
 
 const Hero: React.FC = () => {
   return (
-    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Dynamic Background Elements */}
+    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20">
+      {/* Dynamic Background Elements - Matching the soft teal blobs from screenshot */}
       <div className="absolute inset-0 z-0 bg-[#05070a]">
-        <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-[#40E0D0]/10 blur-[180px] rounded-full animate-pulse"></div>
-        <div className="absolute bottom-[-20%] left-[-10%] w-[60%] h-[60%] bg-teal-600/5 blur-[150px] rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(64,224,208,0.02)_0%,transparent_70%)]"></div>
+        <div className="absolute top-[15%] right-[15%] w-[45%] h-[45%] bg-[#40E0D0]/15 blur-[120px] rounded-full"></div>
+        <div className="absolute bottom-[10%] left-[20%] w-[40%] h-[40%] bg-teal-900/10 blur-[150px] rounded-full"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(64,224,208,0.01)_0%,transparent_80%)]"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 text-center pt-20">
-        <h1 className="text-[3.8rem] sm:text-7xl md:text-[14rem] font-black tracking-tighter mb-10 leading-[0.85] sm:leading-[0.75] uppercase">
-          CULTURE & <br />
-          <span className="text-outline">COMMERCE</span>
-        </h1>
+      <div className="relative z-10 w-full max-w-[90rem] mx-auto px-6 text-center">
+        <div className="flex flex-col items-center justify-center space-y-0">
+          <h1 className="text-[12vw] sm:text-[10rem] md:text-[16rem] font-black tracking-tight leading-[0.8] uppercase select-none">
+            CULTURE
+          </h1>
+          <div className="text-[10vw] sm:text-[8rem] md:text-[12rem] font-black leading-none uppercase -mt-4 mb-2 select-none">
+            &
+          </div>
+          <h2 className="text-[12vw] sm:text-[10rem] md:text-[16rem] font-black tracking-tight leading-[0.8] uppercase text-outline select-none">
+            COMMERCE
+          </h2>
+        </div>
 
-        <p className="text-base md:text-2xl text-white/40 font-medium max-w-2xl mx-auto mb-16 tracking-tight leading-relaxed">
-          We help artists and businesses find their place in the world. <br className="hidden md:block" /> 
-          Let’s build something great together.
-        </p>
+        <div className="mt-12 md:mt-20 max-w-2xl mx-auto">
+          <p className="text-lg md:text-2xl text-white/50 font-medium tracking-tight leading-relaxed">
+            We help artists and businesses find their place in the world.
+            <br />
+            Let’s build something great together.
+          </p>
+        </div>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
-          <a href="#about" className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 bg-white text-black font-black uppercase text-[11px] tracking-[0.2em] rounded-full hover:bg-[#40E0D0] hover:text-[#05070a] transition-all transform hover:-translate-y-1 shadow-2xl shadow-white/5">
+        <div className="mt-16 md:mt-24 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
+          <a href="#about" className="w-full sm:w-auto px-16 py-6 bg-white text-black font-black uppercase text-[12px] tracking-[0.2em] rounded-full hover:bg-[#40E0D0] transition-all transform hover:-translate-y-1 active:scale-95 shadow-2xl shadow-white/5">
             Who We Are
           </a>
-          <a href="#pillars" className="w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 border border-white/20 text-white font-black uppercase text-[11px] tracking-[0.2em] rounded-full hover:bg-white/5 transition-all">
+          <a href="#pillars" className="w-full sm:w-auto px-16 py-6 border border-white/40 text-white font-black uppercase text-[12px] tracking-[0.2em] rounded-full hover:bg-white hover:text-black transition-all transform hover:-translate-y-1 active:scale-95">
             What We Do
           </a>
         </div>
       </div>
       
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-20">
-        <div className="w-[1px] h-12 bg-gradient-to-b from-white to-transparent"></div>
-      </div>
+      {/* Visual Border Guide (from screenshot dotted box, used here for layout balance) */}
+      <div className="absolute inset-x-10 top-[25%] bottom-[20%] border border-dashed border-blue-400/10 rounded-xl pointer-events-none hidden lg:block"></div>
     </div>
   );
 };

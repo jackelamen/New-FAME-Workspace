@@ -1,4 +1,4 @@
-import { Pillar, RoadmapPhase, MetricRow, Project, TimelineEvent } from './types.ts';
+import { Pillar, Project, TimelineEvent } from './types.ts';
 
 export const PILLARS: Pillar[] = [
   {
@@ -42,38 +42,67 @@ export const PILLARS: Pillar[] = [
 export const TIMELINE: TimelineEvent[] = [
   {
     year: '2016',
-    label: 'WHERE WE STARTED',
-    title: 'Early Days in Seoul',
-    description: 'We began our journey in the heart of Seoul, hosting local parties and events that brought the city together.',
-    milestones: ['First team formed', 'Local events launched', 'Our first big festival']
+    label: 'FOUNDATION',
+    title: 'Entourage Seoul Origins',
+    description: 'The journey began in Itaewon, taking over Owl Lounge and hosting legendary pool parties at the Hamilton Hotel.',
+    milestones: [
+      'Entourage Seoul Founded',
+      'Owl Lounge takeover',
+      'Hamilton Hotel Pool Party',
+      'Club MADE launch',
+      'Rapper Grace concert'
+    ]
   },
   {
     year: '2017',
-    label: 'OUR VISION',
-    title: 'The FAME Idea',
-    description: 'We realized we could do more for artists. We started hosting rap battles and concerts to give local talent a stage.',
-    milestones: ['Music series begins', 'Youth talent programs', 'City-wide celebrations']
+    label: 'EXPANSION',
+    title: 'The FAME Initiative',
+    description: 'We officially launched the FAME initiative, expanding into concert series and university rap battles.',
+    milestones: [
+      'FAME Live concert series',
+      'Obey My Mic Hip Hop series',
+      'Golden Mic University Battles',
+      'FAME FEST Music Festival',
+      'Red Rock Beer partnership'
+    ]
   },
   {
     year: '2018',
-    label: 'GROWING UP',
-    title: 'A Creative Home',
-    description: 'We opened our first creative space to help creators connect, work together, and build their dreams.',
-    milestones: ['Creator house opened', 'Collaborative workspaces', 'New city partnerships']
+    label: 'GROWTH',
+    title: 'Diversified Operations',
+    description: 'FAME took over marketing and operations for restaurants and high-profile events across Seoul.',
+    milestones: [
+      'View 33 Ops takeover',
+      'Club Lucidream promo team',
+      'Yeouido Marina Gatsby party',
+      'Largest Seoul Halloween Party',
+      'FAME Creators Network launch'
+    ]
   },
   {
     year: '2019',
-    label: 'OUR IMPACT',
-    title: 'Celebrating Culture',
-    description: 'We focused on events that tell a story, like major fashion shows that brought different cultures together.',
-    milestones: ['Cultural fashion shows', 'Monthly community meetups', 'Regional growth']
+    label: 'POSITIONING',
+    title: 'Cultural Influence',
+    description: 'Broadening our reach through fashion shows, documentary series, and nightlife tourism platforms.',
+    milestones: [
+      'FAME First Fridays',
+      'Latin Cruise Party on Han River',
+      'Seoul Africa Fashion Show',
+      'FAME Creators Docuseries',
+      'Tourism Promotion Platform'
+    ]
   },
   {
     year: 'NOW',
-    label: 'OUR FUTURE',
-    title: 'A Global Partner',
-    description: 'Today, we help brands and artists grow across the world, connecting good ideas with the people who love them.',
-    milestones: ['International reach', 'Supporting new brands', 'Connecting the world']
+    label: 'EVOLUTION',
+    title: 'Lifestyle Trading House',
+    description: 'Today, FAME is a bridge between Asia and the USA, focusing on premium brand acceleration.',
+    milestones: [
+      'Global market bridge',
+      'Premium brand acceleration',
+      'Cross-cultural commerce',
+      'Specialized Agency pivot'
+    ]
   }
 ];
 

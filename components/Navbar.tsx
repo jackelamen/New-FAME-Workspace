@@ -23,28 +23,28 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex flex-col">
-               <span className="font-black text-lg sm:text-xl tracking-tighter uppercase leading-none">
+               <span className="font-black text-xl sm:text-2xl tracking-tighter uppercase leading-none">
                  FAME <span className="text-[#40E0D0]">ENTERTAINMENT</span>
                </span>
-               <span className="text-[10px] font-bold text-white/40 tracking-[0.2em] uppercase mt-1 leading-none">GROUP</span>
+               <span className="text-[11px] font-bold text-white/50 tracking-[0.2em] uppercase mt-1 leading-none">GROUP</span>
             </div>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-10 text-[11px] font-black tracking-[0.2em] uppercase text-white/60">
+          <div className="hidden lg:flex items-center gap-10 text-[11px] font-black tracking-[0.2em] uppercase text-white/50">
             {navLinks.map((link) => (
               <a key={link.name} href={link.href} className="hover:text-white transition-colors">{link.name}</a>
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="hidden sm:flex flex-col items-center">
+          <div className="flex items-center gap-6">
+            <div className="hidden sm:flex items-center">
               <button 
                 onClick={onContactClick}
-                className="bg-[#40E0D0] hover:bg-[#6df0e3] text-[#05070a] px-8 py-3 rounded-full text-[11px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#40E0D0]/20 flex items-center gap-3"
+                className="bg-[#40E0D0] hover:bg-[#6df0e3] text-[#05070a] px-10 py-3.5 rounded-full text-[12px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#40E0D0]/30 flex items-center gap-4 group"
               >
                 Get In Touch
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
               </button>
             </div>
 
@@ -54,9 +54,9 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
               className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
               aria-label="Toggle Menu"
             >
-              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-              <div className={`w-6 h-0.5 bg-white transition-opacity duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></div>
-              <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+              <div className={`w-7 h-0.5 bg-white transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
+              <div className={`w-7 h-0.5 bg-white transition-opacity duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></div>
+              <div className={`w-7 h-0.5 bg-white transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
             </button>
           </div>
         </div>

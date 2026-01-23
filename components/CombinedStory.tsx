@@ -3,7 +3,9 @@ import { TIMELINE } from '../constants.tsx';
 
 const CombinedStory: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeEvent = TIMELINE[activeIndex];
+  
+  // Safe access with fallback
+  const activeEvent = TIMELINE[activeIndex] || TIMELINE[0];
 
   return (
     <div className="bg-[#fdfcfb] text-[#05070a] overflow-hidden">
@@ -17,17 +19,20 @@ const CombinedStory: React.FC = () => {
               </div>
               
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                <h2 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] flex flex-col">
-                  <span className="text-[#05070a]">OUR</span>
-                  <span className="text-transparent" style={{ WebkitTextStroke: '1.5px #05070a' }}>HISTORY</span>
-                </h2>
+                <div className="flex flex-col">
+                  <h2 className="text-7xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] flex flex-col">
+                    <span className="text-[#05070a]">OUR</span>
+                    <span className="text-transparent" style={{ WebkitTextStroke: '1.5px #05070a' }}>HISTORY</span>
+                  </h2>
+                </div>
 
-                <div className="flex bg-[#05070a]/5 p-1 rounded-full backdrop-blur-sm self-start lg:mb-12">
+                <div className="flex bg-[#05070a]/5 p-1 rounded-full backdrop-blur-sm self-start lg:mb-12 overflow-x-auto max-w-full no-scrollbar">
                   {TIMELINE.map((event, index) => (
                     <button
-                      key={event.year}
+                      key={`${event.year}-${index}`}
+                      type="button"
                       onClick={() => setActiveIndex(index)}
-                      className={`px-5 md:px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-500 whitespace-nowrap ${
+                      className={`px-5 md:px-8 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-500 whitespace-nowrap outline-none focus:ring-2 focus:ring-[#40E0D0]/20 ${
                         activeIndex === index 
                           ? 'bg-[#40E0D0] text-[#05070a] shadow-lg shadow-[#40E0D0]/30' 
                           : 'text-[#05070a]/30 hover:text-[#05070a]/60'
@@ -57,17 +62,17 @@ const CombinedStory: React.FC = () => {
 
               <div className="lg:col-span-6 relative z-10 space-y-6 lg:pl-10">
                 <div className="space-y-3">
-                  <h4 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-[#05070a]">
+                  <h4 className="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-[0.9] text-[#05070a] animate-in fade-in duration-500">
                     {activeEvent.title}
                   </h4>
-                  <p className="text-[#05070a]/50 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+                  <p className="text-[#05070a]/50 text-lg md:text-xl font-light leading-relaxed max-w-lg animate-in fade-in slide-in-from-left-4 duration-500">
                     {activeEvent.description}
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 pt-4">
                   {activeEvent.milestones.map((milestone, idx) => (
-                    <div key={idx} className="flex items-center gap-3 group">
+                    <div key={`${activeEvent.year}-milestone-${idx}`} className="flex items-center gap-3 group animate-in fade-in zoom-in-95 duration-500" style={{ animationDelay: `${idx * 50}ms` }}>
                       <div className="w-2 h-2 rounded-full bg-[#40E0D0] shadow-[0_0_8px_rgba(64,224,208,0.3)] shrink-0"></div>
                       <span className="text-[9px] font-black uppercase tracking-[0.15em] text-[#05070a]/70 group-hover:text-[#40E0D0] transition-colors">
                         {milestone}
@@ -84,14 +89,14 @@ const CombinedStory: React.FC = () => {
               <div className="space-y-4">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">01 / THE WHY</span>
                 <p className="text-3xl md:text-5xl font-light leading-tight">
-                  It started with a simple belief: that <span className="text-[#40E0D0] font-black italic">creativity needs a home</span>. We didn't just want to throw parties; we wanted to build a stage where culture could breathe.
+                  It started with a belief that creativity needs a home. FAME (originally standing for <span className="text-[#40E0D0] font-black">Fashion, Art, Music, and Entertainment</span>) was founded to celebrate culture and its creators, helping them find ways to use their creativity to <span className="text-[#05070a] font-bold">make a living</span>.
                 </p>
               </div>
 
               <div className="space-y-4">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">02 / HOW WE GREW</span>
                 <p className="text-xl text-[#05070a]/50 leading-relaxed font-light">
-                  From underground rap battles in Seoul to massive festivals, we grew by listening. We realized that our community wasn't just looking for entertainment—they were looking for <span className="text-[#05070a] font-bold">connection</span>.
+                  From underground rap battles in Seoul to massive festivals, we grew by listening. We realized that our community wasn't just looking for entertainment: they were looking for <span className="text-[#05070a] font-bold">connection</span>.
                 </p>
               </div>
             </div>
@@ -105,7 +110,7 @@ const CombinedStory: React.FC = () => {
                   <span className="text-[10px] font-black text-[#40E0D0] uppercase tracking-[0.3em]">03 / THE SHUTDOWN</span>
                   <h3 className="text-3xl font-black uppercase tracking-tight">WHEN THE MUSIC STOPPED.</h3>
                   <p className="text-[#05070a]/40 text-lg font-light leading-relaxed">
-                    The pandemic was an existential threat. In weeks, the industry went dark. Our stages were empty, but culture never stops—it just changes its medium.
+                    The pandemic was an existential threat. In weeks, the industry went dark. Our stages were empty, but culture never stops - it just changes its medium.
                   </p>
                 </div>
               </div>

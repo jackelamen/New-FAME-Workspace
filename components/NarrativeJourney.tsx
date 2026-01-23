@@ -29,14 +29,14 @@ const NarrativeJourney: React.FC = () => {
               <div className="space-y-6">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">01 / The Why</span>
                 <p className="text-2xl md:text-4xl font-light leading-tight">
-                  It started with a simple belief: that <span className="text-[#40E0D0] font-black italic">creativity needs a home</span>. We didn't just want to throw parties; we wanted to build a stage where culture could breathe and artists could thrive without boundaries.
+                  It started with a belief that creativity needs a home. FAME (originally standing for <span className="text-[#40E0D0] font-black">Fashion, Art, Music, and Entertainment</span>) was built to celebrate culture and its creators, helping them find ways to use their creativity to <span className="text-[#05070a] font-black italic underline decoration-[#40E0D0] decoration-2">make a living</span>.
                 </p>
               </div>
 
               <div className="space-y-6">
                 <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">02 / How We Grew</span>
                 <p className="text-xl text-[#05070a]/50 leading-relaxed font-light">
-                  From underground rap battles in Seoul to massive cultural festivals, we grew by listening. We realized that our community wasn't just looking for entertainment—they were looking for <span className="text-[#05070a] font-bold">connection</span>. We expanded into food, media, and artistry, creating an ecosystem where every pillar supported the other.
+                  From underground rap battles in Seoul to massive cultural festivals, we grew by listening. We realized that our community wasn't just looking for entertainment: they were looking for <span className="text-[#05070a] font-bold">connection</span>. We expanded into food, media, and artistry, creating an ecosystem where every pillar supported the other.
                 </p>
               </div>
             </div>
@@ -52,7 +52,7 @@ const NarrativeJourney: React.FC = () => {
                   <span className="text-[10px] font-black text-[#40E0D0] uppercase tracking-[0.3em]">03 / The Shutdown</span>
                   <h3 className="text-3xl font-black uppercase tracking-tight">When the <br />music stopped.</h3>
                   <p className="text-[#05070a]/40 text-lg leading-relaxed font-light">
-                    The global pandemic was an existential threat. In a matter of weeks, the entertainment industry went dark. Our stages were empty, our events were cancelled, and the world we built seemed to pause. But culture never stops—it just changes its medium.
+                    The global pandemic was an existential threat. In a matter of weeks, the entertainment industry went dark. Our stages were empty, our events were cancelled, and the world we built seemed to pause. But culture never stops - it just changes its medium.
                   </p>
                 </div>
               </div>
@@ -63,7 +63,7 @@ const NarrativeJourney: React.FC = () => {
                   WE PIVOTED TO <span className="text-[#40E0D0]">COMMERCE</span>.
                 </p>
                 <p className="text-xl text-[#05070a]/50 leading-relaxed font-light">
-                  We realized the skills that made us great at events—storytelling, branding, and community building—were exactly what businesses needed to survive in a digital-first world. We evolved into a <span className="text-[#05070a] font-bold italic">Lifestyle Trading House</span>, bridging the gap between high-potential Korean brands and global commerce.
+                  We realized the skills that made us great at events: storytelling, branding, and community building - were exactly what businesses needed to survive in a digital-first world. We evolved into a <span className="text-[#05070a] font-bold italic">Lifestyle Trading House</span>, bridging the gap between high-potential Korean brands and global commerce.
                 </p>
               </div>
             </div>
