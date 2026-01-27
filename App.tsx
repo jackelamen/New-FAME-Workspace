@@ -33,7 +33,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#05070a] text-white overflow-x-hidden selection:bg-[#40E0D0] selection:text-[#05070a]">
+    <div className="min-h-screen bg-[#fdfcfb] text-[#05070a] overflow-x-hidden selection:bg-[#40E0D0] selection:text-[#05070a]">
       <Navbar scrolled={scrolled} onContactClick={openContact} />
       
       <main className="w-full">
@@ -43,31 +43,31 @@ const App: React.FC = () => {
 
         <Ticker />
 
-        <section id="about" className="py-20 md:py-32 bg-[#05070a] relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        <section id="about" className="py-20 md:py-32 bg-[#fdfcfb] relative">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#05070a]/10 to-transparent"></div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <StrategicPivot />
           </div>
         </section>
 
-        <section id="pillars" className="py-16 md:py-24 bg-[#0a0c10] relative">
+        <section id="pillars" className="py-16 md:py-24 bg-[#f4f2f0] relative">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <Pillars />
           </div>
         </section>
 
-        <section id="commerce" className="bg-[#05070a] relative">
+        <section id="commerce" className="bg-[#fdfcfb] relative">
            <CommerceEngine onContactClick={openContact} />
         </section>
 
-        <section id="ecosystem" className="py-16 md:py-24 bg-[#05070a] relative">
+        <section id="ecosystem" className="py-16 md:py-24 bg-[#fdfcfb] relative">
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <Ecosystem />
           </div>
         </section>
 
         <section id="history" className="relative">
-          <div className="h-24 md:h-32 bg-gradient-to-b from-[#05070a] to-[#fdfcfb]"></div>
+          <div className="h-24 md:h-32 bg-gradient-to-b from-[#fdfcfb] to-[#fdfcfb]"></div>
           <CombinedStory />
         </section>
       </main>

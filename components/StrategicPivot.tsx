@@ -11,7 +11,7 @@ const StrategicPivot: React.FC = () => {
             INTRODUCTION
           </div>
           
-          <h2 className="text-6xl sm:text-8xl md:text-[11rem] font-black uppercase tracking-tighter leading-[0.85] md:leading-[0.8] mb-16">
+          <h2 className="text-6xl sm:text-8xl md:text-[11rem] font-black uppercase tracking-tighter leading-[0.85] md:leading-[0.8] mb-16 text-[#05070a]">
             CREATIVE <br />
             <span className="text-outline italic">COMMERCE</span>
           </h2>
@@ -20,26 +20,26 @@ const StrategicPivot: React.FC = () => {
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-24 items-start">
           <div className="space-y-8">
-            <p className="text-white/90 text-2xl md:text-3xl font-light leading-snug">
-              Headquartered in <span className="text-white font-black underline decoration-[#40E0D0] decoration-2 underline-offset-8">Seoul, South Korea,</span> FAME Entertainment Group operates as a specialized lifestyle trading house and creative agency.
+            <p className="text-[#05070a]/90 text-2xl md:text-3xl font-light leading-snug">
+              Headquartered in <span className="text-[#05070a] font-black underline decoration-[#40E0D0] decoration-2 underline-offset-8">Seoul, South Korea,</span> FAME Entertainment Group operates as a specialized lifestyle trading house and creative agency.
             </p>
-            <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+            <p className="text-[#05070a]/50 text-lg md:text-xl font-light leading-relaxed max-w-lg">
               We focus on the intersection of culture and commerce. By bridging these two worlds, we provide a foundation for brands and artists to grow beyond their borders and build lasting influence in new markets.
             </p>
           </div>
 
-          <div className="space-y-8 border-l border-white/10 pl-0 lg:pl-12">
-            <p className="text-white/90 text-2xl md:text-3xl font-light leading-snug">
-              With a dedicated team spanning across <span className="text-white font-black">Asia and the United States</span>, we provide a truly global perspective for every project we touch.
+          <div className="space-y-8 border-l border-[#05070a]/10 pl-0 lg:pl-12">
+            <p className="text-[#05070a]/90 text-2xl md:text-3xl font-light leading-snug">
+              With a dedicated team spanning across <span className="text-[#05070a] font-black">Asia and the United States</span>, we provide a truly global perspective for every project we touch.
             </p>
-            <p className="text-white/40 text-lg md:text-xl font-light leading-relaxed max-w-lg">
-              Our diverse background allows us to <span className="text-white font-bold">bridge cultural gaps</span> through authentic storytelling. We combine creative vision with practical expertise to turn high-potential ideas into celebrated cultural icons through shared experiences.
+            <p className="text-[#05070a]/50 text-lg md:text-xl font-light leading-relaxed max-w-lg">
+              Our diverse background allows us to <span className="text-[#05070a] font-bold">bridge cultural gaps</span> through authentic storytelling. We combine creative vision with practical expertise to turn high-potential ideas into celebrated cultural icons through shared experiences.
             </p>
             
             <div className="flex flex-wrap gap-4 pt-4">
               {['Seoul', 'Tokyo', 'Los Angeles', 'New York'].map((location) => (
-                <div key={location} className="px-5 py-2.5 bg-white/5 rounded-full border border-white/5 hover:border-[#40E0D0]/30 transition-colors">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white/60">{location}</span>
+                <div key={location} className="px-5 py-2.5 bg-[#05070a]/5 rounded-full border border-[#05070a]/5 hover:border-[#40E0D0]/50 transition-colors">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#05070a]/60">{location}</span>
                 </div>
               ))}
             </div>
