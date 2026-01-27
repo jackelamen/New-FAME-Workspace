@@ -2,7 +2,7 @@ import React from 'react';
 
 const NarrativeJourney: React.FC = () => {
   return (
-    <section className="bg-[#fdfcfb] text-[#05070a] py-32 border-t border-[#05070a]/10 relative overflow-hidden">
+    <section className="bg-[#fdfcfb] text-[#1a1a1a] py-32 border-t border-[#1a1a1a]/10 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-600/[0.03] blur-[120px] rounded-full pointer-events-none"></div>
       
@@ -17,7 +17,7 @@ const NarrativeJourney: React.FC = () => {
             </div>
             <h2 className="text-6xl md:text-[10rem] font-black uppercase tracking-tighter leading-[0.8] mb-12">
               THE SOUL <br />
-              <span className="text-transparent italic" style={{ WebkitTextStroke: '2px #05070a' }}>OF FAME</span>
+              <span className="text-transparent italic" style={{ WebkitTextStroke: '2px #1a1a1a' }}>OF FAME</span>
             </h2>
           </div>
 
@@ -27,43 +27,43 @@ const NarrativeJourney: React.FC = () => {
             {/* Left Column: The Why & Growth */}
             <div className="space-y-16">
               <div className="space-y-6">
-                <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">01 / The Why</span>
+                <span className="text-[10px] font-black text-[#1a1a1a]/20 uppercase tracking-[0.3em]">01 / The Why</span>
                 <p className="text-2xl md:text-4xl font-light leading-tight">
-                  It started with a belief that creativity needs a home. FAME (originally standing for <span className="text-[#40E0D0] font-black">Fashion, Art, Music, and Entertainment</span>) was built to celebrate culture and its creators, helping them find ways to use their creativity to <span className="text-[#05070a] font-black italic underline decoration-[#40E0D0] decoration-2">make a living</span>.
+                  It started with a belief that creativity needs a home. FAME (originally standing for <span className="text-[#40E0D0] font-black">Fashion, Art, Music, and Entertainment</span>) was built to celebrate culture and its creators, helping them find ways to use their creativity to <span className="text-[#1a1a1a] font-black italic underline decoration-[#40E0D0] decoration-2">make a living</span>.
                 </p>
               </div>
 
               <div className="space-y-6">
-                <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">02 / How We Grew</span>
-                <p className="text-xl text-[#05070a]/50 leading-relaxed font-light">
-                  From underground rap battles in Seoul to massive cultural festivals, we grew by listening. We realized that our community wasn't just looking for entertainment: they were looking for <span className="text-[#05070a] font-bold">connection</span>. We expanded into food, media, and artistry, creating an ecosystem where every pillar supported the other.
+                <span className="text-[10px] font-black text-[#1a1a1a]/20 uppercase tracking-[0.3em]">02 / How We Grew</span>
+                <p className="text-xl text-[#1a1a1a]/50 leading-relaxed font-light">
+                  From underground rap battles in Seoul to massive cultural festivals, we grew by listening. We realized that our community wasn't just looking for entertainment: they were looking for <span className="text-[#1a1a1a] font-bold">connection</span>. We expanded into food, media, and artistry, creating an ecosystem where every pillar supported the other.
                 </p>
               </div>
             </div>
 
             {/* Right Column: The Shutdown & The Pivot */}
             <div className="space-y-16 lg:mt-32">
-              <div className="relative p-10 bg-[#05070a]/5 border border-[#05070a]/5 rounded-[3rem] overflow-hidden group">
+              <div className="relative p-10 bg-[#1a1a1a]/5 border border-[#1a1a1a]/5 rounded-[3rem] overflow-hidden group">
                 <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-30 transition-opacity">
-                  <span className="text-[8rem] font-black leading-none select-none tracking-tighter text-[#05070a]/10">2020</span>
+                  <span className="text-[8rem] font-black leading-none select-none tracking-tighter text-[#1a1a1a]/10">2020</span>
                 </div>
                 
                 <div className="relative z-10 space-y-6">
                   <span className="text-[10px] font-black text-[#40E0D0] uppercase tracking-[0.3em]">03 / The Shutdown</span>
                   <h3 className="text-3xl font-black uppercase tracking-tight">When the <br />music stopped.</h3>
-                  <p className="text-[#05070a]/40 text-lg leading-relaxed font-light">
+                  <p className="text-[#1a1a1a]/40 text-lg leading-relaxed font-light">
                     The global pandemic was an existential threat. In a matter of weeks, the entertainment industry went dark. Our stages were empty, our events were cancelled, and the world we built seemed to pause. But culture never stops - it just changes its medium.
                   </p>
                 </div>
               </div>
 
               <div className="space-y-6">
-                <span className="text-[10px] font-black text-[#05070a]/20 uppercase tracking-[0.3em]">04 / The Transformation</span>
+                <span className="text-[10px] font-black text-[#1a1a1a]/20 uppercase tracking-[0.3em]">04 / The Transformation</span>
                 <p className="text-2xl md:text-4xl font-black uppercase tracking-tighter leading-tight italic">
                   WE PIVOTED TO <span className="text-[#40E0D0]">COMMERCE</span>.
                 </p>
-                <p className="text-xl text-[#05070a]/50 leading-relaxed font-light">
-                  We realized the skills that made us great at events: storytelling, branding, and community building - were exactly what businesses needed to survive in a digital-first world. We evolved into a <span className="text-[#05070a] font-bold italic">Lifestyle Trading House</span>, bridging the gap between high-potential Korean brands and global commerce.
+                <p className="text-xl text-[#1a1a1a]/50 leading-relaxed font-light">
+                  We realized the skills that made us great at events: storytelling, branding, and community building - were exactly what businesses needed to survive in a digital-first world. We evolved into a <span className="text-[#1a1a1a] font-bold italic">Lifestyle Trading House</span>, bridging the gap between high-potential Korean brands and global commerce.
                 </p>
               </div>
             </div>
@@ -72,7 +72,7 @@ const NarrativeJourney: React.FC = () => {
           {/* Conclusion */}
           <div className="mt-12 flex flex-col items-center text-center">
             <div className="w-[1px] h-32 bg-gradient-to-b from-transparent via-[#40E0D0] to-transparent mb-12"></div>
-            <p className="text-[#05070a]/30 text-xs font-black uppercase tracking-[0.5em] max-w-xl">
+            <p className="text-[#1a1a1a]/30 text-xs font-black uppercase tracking-[0.5em] max-w-xl">
               Today, FAME stands as a testament to resilience, proving that when culture and commerce collide with purpose, the possibilities are infinite.
             </p>
           </div>

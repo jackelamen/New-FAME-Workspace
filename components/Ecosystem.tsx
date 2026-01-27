@@ -12,17 +12,17 @@ const Ecosystem: React.FC = () => {
     <div>
       <div className="flex flex-col lg:flex-row gap-20 items-center">
         <div className="lg:w-1/2">
-          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none text-[#05070a]">How We <br />Work Together</h2>
-          <p className="text-[#05070a]/50 text-xl font-light leading-relaxed mb-10">
+          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-8 leading-none text-[#1a1a1a]">How We <br />Work Together</h2>
+          <p className="text-[#1a1a1a]/70 text-xl font-normal leading-relaxed mb-10">
             We follow a simple plan where creative work helps business grow, and that growth allows us to support even more amazing artists.
           </p>
           <div className="space-y-12">
             {steps.map((step, i) => (
               <div key={i} className="flex gap-8 group">
-                <span className="text-2xl font-black text-[#05070a]/10 group-hover:text-[#40E0D0] transition-colors">0{i + 1}</span>
+                <span className="text-2xl font-black text-[#1a1a1a]/10 group-hover:text-[#40E0D0] transition-colors">0{i + 1}</span>
                 <div>
-                  <h3 className="text-xl font-black uppercase tracking-tight mb-2 text-[#05070a] group-hover:text-[#40E0D0] transition-colors">{step.title}</h3>
-                  <p className="text-[#05070a]/40 text-sm max-w-sm">{step.desc}</p>
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-2 text-[#1a1a1a] group-hover:text-[#40E0D0] transition-colors">{step.title}</h3>
+                  <p className="text-[#1a1a1a]/60 text-sm max-w-sm">{step.desc}</p>
                 </div>
               </div>
             ))}
@@ -30,14 +30,14 @@ const Ecosystem: React.FC = () => {
         </div>
         
         <div className="lg:w-1/2 w-full">
-          <div className="aspect-square glass-card rounded-full border border-[#05070a]/5 flex items-center justify-center relative group overflow-hidden">
+          <div className="aspect-square glass-card rounded-full border border-[#1a1a1a]/5 flex items-center justify-center relative group overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-[#40E0D0]/5 to-teal-500/5 opacity-50"></div>
             <div className="text-center relative z-10 p-12">
-              <h3 className="text-3xl font-black uppercase tracking-tighter mb-6 text-[#05070a]">Partners for Growth</h3>
-              <p className="text-[#05070a]/30 text-sm uppercase tracking-[0.3em] font-bold">Our 2026 Vision</p>
+              <h3 className="text-3xl font-black uppercase tracking-tighter mb-6 text-[#1a1a1a]">Partners for Growth</h3>
+              <p className="text-[#1a1a1a]/40 text-sm uppercase tracking-[0.3em] font-bold">Our 2026 Vision</p>
             </div>
             {/* Animated Ring */}
-            <div className="absolute inset-4 border border-dashed border-[#05070a]/10 rounded-full animate-[spin_20s_linear_infinite]"></div>
+            <div className="absolute inset-4 border border-dashed border-[#1a1a1a]/10 rounded-full animate-[spin_20s_linear_infinite]"></div>
           </div>
         </div>
       </div>

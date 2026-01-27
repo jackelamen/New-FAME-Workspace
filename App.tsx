@@ -33,7 +33,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fdfcfb] text-[#05070a] overflow-x-hidden selection:bg-[#40E0D0] selection:text-[#05070a]">
+    <div className="min-h-screen bg-[#fdfcfb] text-[#1a1a1a] overflow-x-hidden selection:bg-[#40E0D0] selection:text-[#1a1a1a]">
       <Navbar scrolled={scrolled} onContactClick={openContact} />
       
       <main className="w-full">
@@ -44,7 +44,7 @@ const App: React.FC = () => {
         <Ticker />
 
         <section id="about" className="py-20 md:py-32 bg-[#fdfcfb] relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#05070a]/10 to-transparent"></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#1a1a1a]/10 to-transparent"></div>
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <StrategicPivot />
           </div>
