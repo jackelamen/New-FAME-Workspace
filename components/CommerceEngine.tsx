@@ -89,15 +89,15 @@ const CommerceEngine: React.FC<CommerceEngineProps> = ({ onContactClick }) => {
           </div>
         </div>
 
-        {/* Impactful Bottom Bar */}
-        <div className="mt-16 md:mt-24 p-8 md:p-12 glass-card rounded-[2.5rem] border border-[#1a1a1a]/5 flex flex-col md:flex-row items-center justify-between gap-10">
+        {/* Impactful Bottom Bar - Inverted Colors */}
+        <div className="mt-16 md:mt-24 p-8 md:p-12 bg-[#1a1a1a] rounded-[2.5rem] border border-white/10 flex flex-col md:flex-row items-center justify-between gap-10 shadow-2xl shadow-[#1a1a1a]/10">
           <div className="text-center md:text-left">
-            <h4 className="text-2xl font-black uppercase tracking-tight mb-2 text-[#1a1a1a]">Ready to Grow your Business?</h4>
-            <p className="text-[#1a1a1a]/60 uppercase text-[10px] tracking-[0.4em] font-bold">Ask us about how we can work together</p>
+            <h4 className="text-2xl font-black uppercase tracking-tight mb-2 text-white">Ready to Grow your Business?</h4>
+            <p className="text-white/60 uppercase text-[10px] tracking-[0.4em] font-bold">Ask us about how we can work together</p>
           </div>
           <button 
             onClick={onContactClick}
-            className="w-full md:w-auto bg-[#1a1a1a] text-white px-12 py-5 rounded-full font-black uppercase text-[11px] tracking-[0.2em] hover:bg-[#40E0D0] hover:text-[#1a1a1a] transition-all transform hover:-translate-y-1 shadow-2xl shadow-[#1a1a1a]/10"
+            className="w-full md:w-auto bg-white text-[#1a1a1a] px-12 py-5 rounded-full font-black uppercase text-[11px] tracking-[0.2em] hover:bg-[#40E0D0] hover:text-[#1a1a1a] transition-all transform hover:-translate-y-1 shadow-2xl shadow-black/20"
           >
             Become a Partner
           </button>
