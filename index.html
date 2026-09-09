@@ -3,71 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FAME Entertainment Group | Lifestyle Trading House & Creative Agency</title>
-    <meta name="description" content="Specialized lifestyle trading house and creative agency bridging culture and commerce between Asia and the United States.">
-    
-    <!-- Favicon: Updated to brand Turquoise #40E0D0 -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2340E0D0%22/><text y=%22.9em%22 x=%22.1em%22 font-size=%2270%22 font-family=%22Inter, sans-serif%22 font-weight=%22900%22 fill=%22white%22>F</text></svg>">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>FAME Entertainment Group — We put Korean brands on foreign shelves</title>
+    <meta name="description" content="Seoul-based lifestyle trading house. We take premium Korean food, beverage and lifestyle brands into US and Southeast Asian retail, and bring overseas companies into Korea.">
+
+    <meta property="og:title" content="FAME Entertainment Group — We put Korean brands on foreign shelves">
+    <meta property="og:description" content="Seoul-based lifestyle trading house. Distribution, retail placement and creative for brands crossing between Asia and the US.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://fameentgroup.com">
+    <meta name="theme-color" content="#F6F5F2">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23101211%22/><text y=%22.78em%22 x=%22.14em%22 font-size=%2272%22 font-family=%22Georgia, serif%22 font-weight=%22700%22 fill=%22%2340E0D0%22>F</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-      :root {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: #fdfcfb;
-        color: #1a1a1a;
-        overflow-x: hidden;
-      }
-      .glass-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(26, 26, 26, 0.05);
-      }
-      @keyframes scroll {
-        0% { transform: translate3d(0, 0, 0); }
-        100% { transform: translate3d(-50%, 0, 0); }
-      }
-      .animate-scroll {
-        display: flex;
-        width: max-content;
-        animation: scroll 40s linear infinite;
-        will-change: transform;
-      }
-      .text-outline {
-        -webkit-text-stroke: 1.5px #1a1a1a;
-        color: transparent;
-      }
-      .light-theme-outline {
-        -webkit-text-stroke: 1px rgba(26, 26, 26, 0.2);
-        color: transparent;
-      }
-      ::selection {
-        background: #40E0D0;
-        color: #1a1a1a;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Newsreader:opsz,wght@6..72,300..600&display=swap" rel="stylesheet">
 
-    <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@18.2.0",
-    "react-dom": "https://esm.sh/react-dom@18.2.0?external=react",
-    "react-dom/client": "https://esm.sh/react-dom@18.2.0/client?external=react",
-    "react/jsx-runtime": "https://esm.sh/react@18.2.0/jsx-runtime",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
-  }
-}
-</script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "FAME Entertainment Group",
+        "url": "https://fameentgroup.com",
+        "email": "jack.lyons@fameentgroup.com",
+        "foundingDate": "2016",
+        "description": "Seoul-based lifestyle trading house. Takes premium Korean food, beverage and lifestyle brands into US and Southeast Asian retail, and brings overseas companies into Korea.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "KR",
+          "addressRegion": "Seoul"
+        },
+        "areaServed": ["KR", "US", "SG", "MY"]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>

@@ -1,62 +1,58 @@
 import React from 'react';
+import { CONTACT_EMAIL, MARKETS } from '../constants.tsx';
 
-const Footer: React.FC = () => {
-  return (
-    <footer className="bg-[#f2f0ed] border-t border-[#1a1a1a]/5 py-32 text-[#1a1a1a]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="flex flex-col lg:flex-row justify-between gap-20 mb-32">
-          <div className="max-w-md">
-            <div className="flex items-center gap-4 mb-10">
-              <div className="flex flex-col">
-                <span className="font-black text-2xl tracking-tighter uppercase leading-none">
-                  FAME <span className="text-[#40E0D0]">ENTERTAINMENT</span>
-                </span>
-                <span className="text-xs font-bold text-[#1a1a1a]/50 tracking-[0.3em] uppercase mt-1">GROUP</span>
-              </div>
-            </div>
-            <p className="text-[#1a1a1a]/60 text-xl leading-relaxed mb-10 font-normal">
-              FAME Entertainment Group is a team of creators and business partners helping artists and brands reach their full potential.
-            </p>
-            <div className="flex gap-10">
-              {['Instagram', 'LinkedIn', 'YouTube'].map((social) => (
-                <a key={social} href="#" className="text-[10px] font-black tracking-widest text-[#1a1a1a]/50 hover:text-[#40E0D0] transition-colors uppercase">
-                  {social}
-                </a>
-              ))}
-            </div>
-          </div>
+const NAV = [
+  { name: 'What we do', href: '#services' },
+  { name: 'How it works', href: '#process' },
+  { name: 'The team', href: '#capabilities' },
+  { name: 'Where we came from', href: '#story' },
+];
 
-          <div className="grid grid-cols-2 gap-20">
-            <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a1a1a]/30 mb-10">Navigation</h4>
-              <ul className="space-y-4 text-sm font-bold uppercase tracking-widest text-[#1a1a1a]/60">
-                <li><a href="#about" className="hover:text-[#40E0D0] transition-colors">Introduction</a></li>
-                <li><a href="#pillars" className="hover:text-[#40E0D0] transition-colors">4 Pillars</a></li>
-                <li><a href="#commerce" className="hover:text-[#40E0D0] transition-colors">Commerce</a></li>
-                <li><a href="#history" className="hover:text-[#40E0D0] transition-colors">Our History</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a1a1a]/30 mb-10">Say Hello</h4>
-              <ul className="space-y-4 text-sm font-bold tracking-widest uppercase text-[#1a1a1a]/60">
-                <li>Gyeonggi, KR</li>
-                <li>Seoul, KR</li>
-                <li>jack.lyons@fameentgroup.com</li>
-              </ul>
-            </div>
+const Footer: React.FC = () => (
+  <footer className="bg-ink text-paper pt-20 pb-10">
+    <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 pb-16">
+        <div className="md:col-span-5">
+          <div className="flex items-baseline gap-2 mb-5">
+            <span className="u-display text-[1.35rem] leading-none">FAME</span>
+            <span className="u-eyebrow text-paper/55 text-[0.6875rem]">Entertainment Group</span>
           </div>
+          <p className="u-read text-[1.05rem] text-paper/70 max-w-[38ch]">
+            A Seoul lifestyle trading house with a creative team attached. We move brands
+            between Korea, the United States and Southeast Asia.
+          </p>
         </div>
 
-        <div className="pt-12 border-t border-[#1a1a1a]/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black tracking-[0.4em] text-[#1a1a1a]/30 uppercase">
-          <p>© 2026 FAME ENTERTAINMENT GROUP. ALL RIGHTS RESERVED.</p>
-          <div className="flex gap-12">
-            <a href="#" className="hover:text-[#1a1a1a] transition-colors">Privacy</a>
-            <a href="#" className="hover:text-[#1a1a1a] transition-colors">Terms</a>
-          </div>
+        <div className="md:col-span-3">
+          <p className="u-eyebrow text-paper/60 mb-5">Sections</p>
+          <ul className="space-y-3 text-[1rem] text-paper/80">
+            {NAV.map((link) => (
+              <li key={link.name}>
+                <a href={link.href} className="hover:text-turq transition-colors">{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="md:col-span-4">
+          <p className="u-eyebrow text-paper/60 mb-5">Get in touch</p>
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="text-[1rem] text-paper hover:text-turq transition-colors break-all"
+          >
+            {CONTACT_EMAIL}
+          </a>
+          <p className="text-[1rem] text-paper/70 mt-4">Seoul and Gyeonggi, South Korea</p>
+          <p className="text-[1rem] text-paper/70 mt-1">{MARKETS.join(' · ')}</p>
         </div>
       </div>
-    </footer>
-  );
-};
+
+      <div className="pt-8 border-t border-paper/15 flex flex-col sm:flex-row justify-between gap-4 text-[0.9rem] text-paper/60">
+        <p>© {new Date().getFullYear()} FAME Entertainment Group</p>
+        <p>Bridging culture and commerce since 2016</p>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

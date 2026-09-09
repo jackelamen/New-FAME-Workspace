@@ -1,85 +1,90 @@
 import React, { useState } from 'react';
 
-interface NavbarProps { 
-  scrolled: boolean; 
+interface NavbarProps {
+  scrolled: boolean;
   onContactClick: () => void;
 }
+
+const LINKS = [
+  { name: 'What we do', href: '#services' },
+  { name: 'How it works', href: '#process' },
+  { name: 'The team', href: '#capabilities' },
+  { name: 'Where we came from', href: '#story' },
+];
+
+const Wordmark: React.FC<{ className?: string }> = ({ className = '' }) => (
+  <a href="#top" className={`flex items-baseline gap-2 ${className}`} aria-label="FAME Entertainment Group, back to top">
+    <span className="u-display text-[1.35rem] leading-none">FAME</span>
+    <span className="u-eyebrow text-muted text-[0.6875rem] leading-none">Entertainment Group</span>
+  </a>
+);
 
 const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  const navLinks = [
-    { name: 'Introduction', href: '#about' },
-    { name: '4 Pillars', href: '#pillars' },
-    { name: 'Commerce', href: '#commerce' },
-    { name: 'Our History', href: '#history' },
-  ];
-
   return (
     <>
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || isOpen ? 'bg-[#fdfcfb]/95 backdrop-blur-xl py-4 border-b border-[#1a1a1a]/5' : 'bg-transparent py-8'}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="flex flex-col">
-               <span className="font-black text-xl sm:text-2xl tracking-tighter uppercase leading-none text-[#1a1a1a]">
-                 FAME <span className="text-[#40E0D0]">ENTERTAINMENT</span>
-               </span>
-               <span className="text-[11px] font-bold text-[#1a1a1a]/50 tracking-[0.2em] uppercase mt-1 leading-none">GROUP</span>
-            </div>
-          </div>
+      <nav
+        className={`fixed top-0 inset-x-0 z-50 transition-[background-color,padding,border-color] duration-300 border-b ${
+          scrolled || isOpen
+            ? 'bg-paper/92 backdrop-blur-md py-4 border-ink/10'
+            : 'bg-transparent py-7 border-transparent'
+        }`}
+      >
+        <div className="max-w-[76rem] mx-auto px-6 lg:px-10 flex items-center justify-between gap-8">
+          <Wordmark />
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-10 text-[11px] font-black tracking-[0.2em] uppercase text-[#1a1a1a]/60">
-            {navLinks.map((link) => (
-              <a key={link.name} href={link.href} className="hover:text-[#1a1a1a] transition-colors">{link.name}</a>
+          <div className="hidden lg:flex items-center gap-9 text-[0.9375rem] text-muted">
+            {LINKS.map((link) => (
+              <a key={link.name} href={link.href} className="hover:text-ink transition-colors">
+                {link.name}
+              </a>
             ))}
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="hidden sm:flex items-center">
-              <button 
-                onClick={onContactClick}
-                className="bg-[#1a1a1a] hover:bg-[#40E0D0] text-white hover:text-[#1a1a1a] px-10 py-3.5 rounded-full text-[12px] font-black uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#1a1a1a]/5 flex items-center gap-4 group"
-              >
-                Get In Touch
-                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
-              </button>
-            </div>
-
-            {/* Hamburger Button */}
-            <button 
-              onClick={toggleMenu}
-              className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
-              aria-label="Toggle Menu"
+          <div className="flex items-center gap-4">
+            <button
+              onClick={onContactClick}
+              className="hidden sm:inline-flex items-center gap-2 bg-ink text-paper px-6 py-3 text-[0.9375rem] font-semibold hover:bg-deep transition-colors"
             >
-              <div className={`w-7 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-              <div className={`w-7 h-0.5 bg-[#1a1a1a] transition-opacity duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}></div>
-              <div className={`w-7 h-0.5 bg-[#1a1a1a] transition-all duration-300 ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
+              Start a conversation
+            </button>
+
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px]"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+            >
+              <span className={`w-6 h-[2px] bg-ink transition-transform duration-300 ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
+              <span className={`w-6 h-[2px] bg-ink transition-opacity duration-200 ${isOpen ? 'opacity-0' : ''}`} />
+              <span className={`w-6 h-[2px] bg-ink transition-transform duration-300 ${isOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-40 bg-[#fdfcfb] transition-all duration-500 lg:hidden ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div className="flex flex-col items-center justify-center h-full gap-8 text-[#1a1a1a]">
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href} 
+      <div
+        className={`fixed inset-0 z-40 bg-paper lg:hidden transition-opacity duration-300 ${
+          isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <div className="flex flex-col justify-center h-full px-8 gap-6">
+          {LINKS.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-4xl font-black uppercase tracking-tighter hover:text-[#40E0D0] transition-colors"
+              className="u-display text-[2rem] hover:text-deep transition-colors"
             >
               {link.name}
             </a>
           ))}
-          <button 
+          <button
             onClick={() => { setIsOpen(false); onContactClick(); }}
-            className="mt-8 bg-[#1a1a1a] text-white px-10 py-4 rounded-full text-sm font-black uppercase tracking-widest hover:bg-[#40E0D0] hover:text-[#1a1a1a] transition-colors"
+            className="mt-6 self-start bg-ink text-paper px-8 py-4 text-base font-semibold"
           >
-            Get In Touch
+            Start a conversation
           </button>
         </div>
       </div>

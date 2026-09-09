@@ -1,48 +1,75 @@
 import React from 'react';
+import { MARKETS } from '../constants.tsx';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onContactClick: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-32 pb-20 bg-[#fdfcfb]">
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-[15%] right-[15%] w-[45%] h-[45%] bg-[#40E0D0]/15 blur-[120px] rounded-full"></div>
-        <div className="absolute bottom-[10%] left-[20%] w-[40%] h-[40%] bg-teal-500/10 blur-[150px] rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(64,224,208,0.01)_0%,transparent_80%)]"></div>
-      </div>
+    <div className="relative flex items-center pt-32 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+      {/* Single quiet ground tone. No ambient glow stack. */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(120%_90%_at_78%_8%,rgba(64,224,208,0.16)_0%,transparent_58%)]" />
 
-      <div className="relative z-10 w-full max-w-[90rem] mx-auto px-6 text-center">
-        <div className="flex flex-col items-center justify-center space-y-0 text-[#1a1a1a]">
-          <h1 className="text-[10vw] sm:text-[7rem] md:text-[11rem] font-black tracking-tight leading-[0.8] uppercase select-none">
-            CULTURE
-          </h1>
-          <div className="text-[8vw] sm:text-[6rem] md:text-[9rem] font-black leading-none uppercase -mt-4 mb-2 select-none">
-            &
+      <div className="max-w-[76rem] mx-auto px-6 lg:px-10 w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-14 items-end">
+          <div className="lg:col-span-8">
+            <p className="u-eyebrow text-deep mb-6 rise" style={{ animationDelay: '60ms' }}>
+              Seoul · Lifestyle trading house · Since 2016
+            </p>
+
+            {/* Wrapped by measure, not by hard breaks, so the rag survives a
+                font fallback or a narrow viewport. */}
+            <h1
+              className="u-display text-[clamp(2.1rem,5vw,4.15rem)] max-w-[17ch] rise"
+              style={{ animationDelay: '140ms' }}
+            >
+              We put Korean brands on shelves that have{' '}
+              <span className="text-deep">never heard of them.</span>
+            </h1>
+
+            <p
+              className="u-read text-[1.15rem] md:text-[1.3rem] text-ink/85 max-w-[44ch] mt-7 rise"
+              style={{ animationDelay: '240ms' }}
+            >
+              And we bring overseas companies into Korea the same way. Distribution,
+              retail placement, and the creative work that makes a product actually
+              sell once it gets there.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 mt-9 rise" style={{ animationDelay: '340ms' }}>
+              <button
+                onClick={onContactClick}
+                className="bg-ink text-paper px-8 py-4 text-base font-semibold hover:bg-deep transition-colors"
+              >
+                Tell us about your brand
+              </button>
+              <a
+                href="#services"
+                className="border border-ink/25 px-8 py-4 text-base font-semibold text-center hover:border-ink hover:bg-ink hover:text-paper transition-colors"
+              >
+                See what that involves
+              </a>
+            </div>
           </div>
-          <h2 className="text-[10vw] sm:text-[7rem] md:text-[11rem] font-black tracking-tight leading-[0.8] uppercase text-outline select-none">
-            COMMERCE
-          </h2>
-        </div>
 
-        <div className="mt-12 md:mt-20 max-w-2xl mx-auto">
-          <p className="text-xl md:text-2xl text-[#1a1a1a]/80 font-normal tracking-tight leading-relaxed">
-            We help artists and businesses find their place in the world.
-            <br />
-            Let’s build something great together.
-          </p>
-        </div>
-
-        <div className="mt-16 md:mt-24 flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8">
-          <a href="#about" className="w-full sm:w-auto px-16 py-6 bg-[#1a1a1a] text-white font-black uppercase text-[12px] tracking-[0.2em] rounded-full hover:bg-[#40E0D0] hover:text-[#1a1a1a] transition-all transform hover:-translate-y-1 active:scale-95 shadow-2xl shadow-[#1a1a1a]/10">
-            Who We Are
-          </a>
-          <a href="#pillars" className="w-full sm:w-auto px-16 py-6 border border-[#1a1a1a]/20 text-[#1a1a1a] font-black uppercase text-[12px] tracking-[0.2em] rounded-full hover:bg-[#1a1a1a] hover:text-white transition-all transform hover:-translate-y-1 active:scale-95">
-            What We Do
-          </a>
+          {/* Secondary stop: where the work happens, stated plainly. */}
+          <div className="lg:col-span-4 lg:border-l lg:border-ink/12 lg:pl-10 rise" style={{ animationDelay: '440ms' }}>
+            <p className="u-eyebrow text-muted mb-5">On the ground in</p>
+            <ul className="space-y-2.5">
+              {MARKETS.map((market) => (
+                <li key={market} className="u-display-tight text-[1.35rem] leading-none text-ink/90">
+                  {market}
+                </li>
+              ))}
+            </ul>
+            <p className="u-read text-base text-muted mt-6 max-w-[30ch]">
+              Ten years of running events, campaigns and retail in Korea, pointed
+              at moving your product across a border.
+            </p>
+          </div>
         </div>
       </div>
-      
-      {/* Visual Border Guide */}
-      <div className="absolute inset-x-10 top-[25%] bottom-[20%] border border-dashed border-[#1a1a1a]/5 rounded-xl pointer-events-none hidden lg:block"></div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
+import './index.css';
 import React from 'react';
-import { createRoot } from 'react-dom/client';
+import { createRoot, hydrateRoot } from 'react-dom/client';
 import App from './App.tsx';
 
 const init = () => {
@@ -7,12 +8,19 @@ const init = () => {
   if (!container) return;
 
   try {
-    const root = createRoot(container);
-    root.render(
+    const tree = (
       <React.StrictMode>
         <App />
       </React.StrictMode>
     );
+
+    // The build prerenders into #root, so hydrate that markup rather than
+    // throwing it away and re-rendering from scratch.
+    if (container.hasChildNodes()) {
+      hydrateRoot(container, tree);
+    } else {
+      createRoot(container).render(tree);
+    }
   } catch (error) {
     console.error("React Render Error:", error);
   }

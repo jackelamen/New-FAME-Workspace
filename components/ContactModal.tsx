@@ -1,114 +1,175 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { CONTACT_EMAIL } from '../constants.tsx';
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+const INTENTS = [
+  'Taking a Korean brand abroad',
+  'Bringing a brand into Korea',
+  'Creative, media or events',
+  'Something else',
+];
+
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
-  const [formState, setFormState] = useState({ name: '', email: '', company: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    intent: INTENTS[0],
+    message: '',
+  });
+  const [sent, setSent] = useState(false);
+  const firstFieldRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    };
-    if (isOpen) window.addEventListener('keydown', handleEsc);
+    if (!isOpen) return;
+    const handleEsc = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', handleEsc);
+    firstFieldRef.current?.focus();
     return () => window.removeEventListener('keydown', handleEsc);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
+  /* No backend on this site yet, so the form composes a real message in the
+     visitor's mail client rather than pretending to submit. Swap this for a
+     POST to a form endpoint when one exists. */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-    }, 2500);
+    const subject = `${form.intent} — ${form.company || form.name}`;
+    const body = [
+      `Name: ${form.name}`,
+      `Email: ${form.email}`,
+      `Company: ${form.company || '—'}`,
+      `Enquiry: ${form.intent}`,
+      '',
+      form.message,
+    ].join('\n');
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+    setSent(true);
   };
 
+  const field =
+    'w-full bg-chalk border border-ink/20 px-4 py-3.5 text-[1rem] text-ink placeholder-muted focus:outline-none focus:border-deep transition-colors';
+
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center px-6 transition-all duration-300">
-      <div 
-        className="absolute inset-0 bg-[#fdfcfb]/95 backdrop-blur-xl animate-in fade-in duration-500"
-        onClick={onClose}
-      ></div>
-      
-      <div className="relative w-full max-w-2xl bg-white border border-[#1a1a1a]/5 rounded-[2.5rem] p-8 md:p-16 shadow-2xl animate-in zoom-in-95 slide-in-from-bottom-4 duration-300 text-[#1a1a1a]">
-        <button 
+    <div className="fixed inset-0 z-[100] flex items-start md:items-center justify-center overflow-y-auto py-10 px-4">
+      <div className="absolute inset-0 bg-ink/60 backdrop-blur-sm" onClick={onClose} />
+
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Contact FAME Entertainment Group"
+        className="relative w-full max-w-xl bg-paper border border-ink/15 p-7 md:p-10 rise"
+      >
+        <button
           onClick={onClose}
-          className="absolute top-8 right-8 p-2 text-[#1a1a1a]/20 hover:text-[#1a1a1a] transition-colors"
-          aria-label="Close modal"
+          className="absolute top-5 right-5 text-muted hover:text-ink transition-colors"
+          aria-label="Close"
         >
-          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+            <path strokeLinecap="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        {submitted ? (
-          <div className="text-center py-20">
-            <div className="w-24 h-24 bg-[#40E0D0] rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-[#40E0D0]/40">
-              <svg className="w-12 h-12 text-[#1a1a1a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 italic">Message Received</h2>
-            <p className="text-[#1a1a1a]/40 uppercase text-[10px] tracking-[0.5em] font-bold">Expect a response within 24 hours.</p>
+        {sent ? (
+          <div className="py-10">
+            <h2 className="u-display text-[1.9rem] mb-4">Your mail client should be open.</h2>
+            <p className="u-read text-[1.1rem] text-ink/80 mb-6">
+              Send the draft and it lands with us directly. If nothing opened, write to us at
+              the address below and we will pick it up the same way.
+            </p>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="u-display-tight text-[1.1rem] text-deep border-b-2 border-turq pb-1"
+            >
+              {CONTACT_EMAIL}
+            </a>
           </div>
         ) : (
-          <div className="space-y-10">
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-10 h-[2px] bg-[#40E0D0]"></div>
-                <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[#40E0D0]">Inquiry Portal</span>
-              </div>
-              <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none mb-6">
-                GET IN <br /><span className="text-outline italic">TOUCH</span>
-              </h2>
-              <p className="text-[#1a1a1a]/40 text-lg font-light leading-relaxed">
-                Connect with our team to explore partnerships, media coverage, or creative collaborations.
-              </p>
-            </div>
+          <>
+            <p className="u-eyebrow text-deep mb-4">Start a conversation</p>
+            <h2 className="u-display text-[clamp(1.7rem,4vw,2.3rem)] mb-4">
+              Tell us what you are trying to move, and where.
+            </h2>
+            <p className="u-read text-[1.05rem] text-ink/75 mb-8">
+              A few lines is enough. We reply to everything, usually within a working day,
+              including when the answer is that we are not the right fit.
+            </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input 
-                  type="text" required placeholder="NAME" 
-                  className="w-full bg-[#1a1a1a]/5 border border-[#1a1a1a]/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-[#1a1a1a] placeholder-[#1a1a1a]/30 focus:outline-none focus:border-[#40E0D0] transition-all"
-                  value={formState.name}
-                  onChange={(e) => setFormState({...formState, name: e.target.value})}
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <input
+                  ref={firstFieldRef}
+                  type="text"
+                  required
+                  placeholder="Your name"
+                  aria-label="Your name"
+                  className={field}
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
-                <input 
-                  type="email" required placeholder="EMAIL" 
-                  className="w-full bg-[#1a1a1a]/5 border border-[#1a1a1a]/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-[#1a1a1a] placeholder-[#1a1a1a]/30 focus:outline-none focus:border-[#40E0D0] transition-all"
-                  value={formState.email}
-                  onChange={(e) => setFormState({...formState, email: e.target.value})}
+                <input
+                  type="email"
+                  required
+                  placeholder="Email"
+                  aria-label="Email"
+                  className={field}
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                 />
               </div>
-              <input 
-                type="text" placeholder="COMPANY / ORGANIZATION" 
-                className="w-full bg-[#1a1a1a]/5 border border-[#1a1a1a]/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-[#1a1a1a] placeholder-[#1a1a1a]/30 focus:outline-none focus:border-[#40E0D0] transition-all"
-                value={formState.company}
-                onChange={(e) => setFormState({...formState, company: e.target.value})}
+
+              <input
+                type="text"
+                placeholder="Company or brand"
+                aria-label="Company or brand"
+                className={field}
+                value={form.company}
+                onChange={(e) => setForm({ ...form, company: e.target.value })}
               />
-              <textarea 
-                required rows={4} placeholder="HOW CAN WE HELP?" 
-                className="w-full bg-[#1a1a1a]/5 border border-[#1a1a1a]/5 rounded-xl p-5 text-[10px] font-black uppercase tracking-widest text-[#1a1a1a] placeholder-[#1a1a1a]/30 focus:outline-none focus:border-[#40E0D0] transition-all resize-none"
-                value={formState.message}
-                onChange={(e) => setFormState({...formState, message: e.target.value})}
-              />
-              <button 
-                type="submit"
-                className="w-full bg-[#1a1a1a] hover:bg-[#40E0D0] text-white hover:text-[#1a1a1a] py-6 rounded-xl text-[11px] font-black uppercase tracking-[0.2em] transition-all hover:scale-[1.01] active:scale-95 shadow-xl shadow-[#1a1a1a]/20 flex items-center justify-center gap-3 mt-4"
+
+              <select
+                aria-label="What this is about"
+                className={field}
+                value={form.intent}
+                onChange={(e) => setForm({ ...form, intent: e.target.value })}
               >
-                Send Message
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                {INTENTS.map((intent) => (
+                  <option key={intent}>{intent}</option>
+                ))}
+              </select>
+
+              <textarea
+                required
+                rows={4}
+                placeholder="What is the product, and which market are you aiming at?"
+                aria-label="Your message"
+                className={`${field} resize-none`}
+                value={form.message}
+                onChange={(e) => setForm({ ...form, message: e.target.value })}
+              />
+
+              <button
+                type="submit"
+                className="w-full bg-ink text-paper py-4 text-base font-semibold hover:bg-deep transition-colors"
+              >
+                Send it
               </button>
             </form>
-          </div>
+
+            <p className="text-[0.9rem] text-muted mt-5">
+              Or write directly to{' '}
+              <a href={`mailto:${CONTACT_EMAIL}`} className="text-ink underline decoration-turq decoration-2 underline-offset-4">
+                {CONTACT_EMAIL}
+              </a>
+            </p>
+          </>
         )}
       </div>
     </div>

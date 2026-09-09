@@ -2,79 +2,75 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero.tsx';
 import Ticker from './components/Ticker.tsx';
-import CombinedStory from './components/CombinedStory.tsx';
-import StrategicPivot from './components/StrategicPivot.tsx';
-import Pillars from './components/Pillars.tsx';
-import CommerceEngine from './components/CommerceEngine.tsx';
-import Ecosystem from './components/Ecosystem.tsx';
+import Services from './components/Services.tsx';
+import Process from './components/Process.tsx';
+import Capabilities from './components/Capabilities.tsx';
+import Story from './components/Story.tsx';
+import ClosingCTA from './components/ClosingCTA.tsx';
 import Footer from './components/Footer.tsx';
 import ContactModal from './components/ContactModal.tsx';
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const openContact = () => {
-    setIsContactModalOpen(true);
-    document.body.style.overflow = 'hidden';
-  };
-  
-  const closeContact = () => {
-    setIsContactModalOpen(false);
-    document.body.style.overflow = 'unset';
-  };
+  useEffect(() => {
+    document.body.style.overflow = contactOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [contactOpen]);
+
+  const openContact = () => setContactOpen(true);
 
   return (
-    <div className="min-h-screen bg-[#fdfcfb] text-[#1a1a1a] overflow-x-hidden selection:bg-[#40E0D0] selection:text-[#1a1a1a]">
+    <div id="top" className="min-h-screen bg-paper text-ink overflow-x-hidden">
       <Navbar scrolled={scrolled} onContactClick={openContact} />
-      
-      <main className="w-full">
-        <section id="hero">
-          <Hero />
-        </section>
+
+      <main>
+        <Hero onContactClick={openContact} />
 
         <Ticker />
 
-        <section id="about" className="py-20 md:py-32 bg-[#fdfcfb] relative">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#1a1a1a]/10 to-transparent"></div>
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <StrategicPivot />
+        <section id="services" className="py-24 md:py-32">
+          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
+            <Services onContactClick={openContact} />
           </div>
         </section>
 
-        <section id="pillars" className="py-16 md:py-24 bg-[#f4f2f0] relative">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <Pillars />
+        {/* The one dark block on the page. The brand turquoise only reads
+            properly against it, so the process lives here. */}
+        <section id="process" className="py-24 md:py-32 bg-ink">
+          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
+            <Process />
           </div>
         </section>
 
-        <section id="commerce" className="bg-[#fdfcfb] relative">
-           <CommerceEngine onContactClick={openContact} />
-        </section>
-
-        <section id="ecosystem" className="py-16 md:py-24 bg-[#fdfcfb] relative">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <Ecosystem />
+        <section id="capabilities" className="py-24 md:py-32">
+          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
+            <Capabilities />
           </div>
         </section>
 
-        <section id="history" className="relative">
-          <div className="h-24 md:h-32 bg-gradient-to-b from-[#fdfcfb] to-[#fdfcfb]"></div>
-          <CombinedStory />
+        <section id="story" className="py-24 md:py-32 bg-haze">
+          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
+            <Story />
+          </div>
+        </section>
+
+        <section id="contact" className="py-24 md:py-32">
+          <ClosingCTA onContactClick={openContact} />
         </section>
       </main>
 
       <Footer />
-      
-      <ContactModal isOpen={isContactModalOpen} onClose={closeContact} />
+
+      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
     </div>
   );
 };

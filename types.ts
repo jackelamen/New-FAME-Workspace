@@ -1,12 +1,24 @@
+export interface Service {
+  id: string;
+  index: string;
+  title: string;
+  audience: string;
+  summary: string;
+  deliverables: string[];
+}
 
-export interface Pillar {
+export interface Capability {
   id: string;
   title: string;
-  subtitle: string;
-  description: string;
-  icon: string;
-  color: string;
-  backgroundImage: string;
+  line: string;
+  detail: string;
+}
+
+export interface Step {
+  index: string;
+  title: string;
+  detail: string;
+  output: string;
 }
 
 export interface TimelineEvent {
@@ -15,26 +27,4 @@ export interface TimelineEvent {
   title: string;
   description: string;
   milestones: string[];
-}
-
-export interface RoadmapPhase {
-  phase: string;
-  title: string;
-  timeline: string;
-  goals: string[];
-}
-
-export interface MetricRow {
-  label: string;
-  old: string;
-  new: string;
-}
-
-export interface Project {
-  id: string;
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-  tags: string[];
 }

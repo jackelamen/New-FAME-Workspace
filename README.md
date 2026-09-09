@@ -1,20 +1,45 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# fameentgroup.com
 
-# Run and deploy your AI Studio app
+Marketing site for FAME Entertainment Group, a Seoul-based lifestyle trading house.
 
-This contains everything you need to run your app locally.
+## Run locally
 
-View your app in AI Studio: https://ai.studio/apps/drive/1F8Ph03p8JweWztSk7UkcGWOKBUOwBKeG
+```bash
+npm install
+npm run dev
+```
 
-## Run Locally
+No environment variables are required.
 
-**Prerequisites:**  Node.js
+## Structure
 
+- `index.html` — design tokens (Tailwind config + CSS custom rules), fonts, import map
+- `constants.tsx` — all site copy and content; edit here, not in components
+- `components/` — one file per page section
+- `components/SectionHead.tsx` — shared section header, keeps type hierarchy consistent
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Design system
+
+| Token | Value | Use |
+|---|---|---|
+| `ink` | `#101211` | All body and headline text, dark section backgrounds |
+| `paper` | `#F6F5F2` | Page background, text on dark |
+| `haze` | `#EAE8E2` | Alternate section background |
+| `turq` | `#40E0D0` | Brand accent. **Fills and rules only.** Fails text contrast on light backgrounds |
+| `deep` | `#0A5F58` | Accent for text on light backgrounds (accessible turquoise) |
+| `muted` | `#5A5F5C` | Secondary text |
+
+Type: **Archivo** (variable width axis) for display, **Newsreader** for reading copy.
+Utility classes `u-display`, `u-display-tight`, `u-eyebrow`, `u-read` live in `index.html`.
+
+Rules that keep the page working:
+- The hero headline is the only type above ~3.2rem. Section heads use `SectionHead`.
+- Turquoise never carries text on light ground. Use `deep` there.
+- No label smaller than 13px (`u-eyebrow` sets the floor).
+- One entrance animation (`.rise`) on the hero. Nothing else animates on scroll.
+
+## Contact form
+
+`components/ContactModal.tsx` composes a `mailto:` draft. There is no backend.
+To wire a real endpoint, replace `handleSubmit` with a POST and keep the mailto
+as the fallback.

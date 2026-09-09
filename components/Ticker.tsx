@@ -1,34 +1,21 @@
 import React from 'react';
+import { TICKER } from '../constants.tsx';
 
-const Ticker: React.FC = () => {
-  const tickerItems = [
-    "LIFESTYLE TRADING HOUSE",
-    "CREATIVE COMMERCE",
-    "FAME ENTERTAINMENT GROUP",
-    "SEOUL • ATLANTA • SINGAPORE • KUALA LUMPUR",
-    "BRIDGING CULTURE & COMMERCE",
-    "PREMIUM BRAND ACCELERATION",
-    "EVENT & MEDIA PORTFOLIO",
-  ];
-  
-  return (
-    <div className="relative py-6 bg-[#40E0D0]/10 border-y border-[#1a1a1a]/5 overflow-hidden whitespace-nowrap">
-      <div className="animate-scroll">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="flex items-center">
-            {tickerItems.map((item, idx) => (
-              <React.Fragment key={idx}>
-                <span className="text-[10px] md:text-xs font-black uppercase tracking-[0.4em] text-[#1a1a1a]/40 px-10">
-                  {item}
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-[#40E0D0]/50"></span>
-              </React.Fragment>
-            ))}
-          </div>
-        ))}
-      </div>
+const Ticker: React.FC = () => (
+  <div className="relative py-4 bg-ink text-paper overflow-hidden whitespace-nowrap" aria-hidden="true">
+    <div className="marquee">
+      {[0, 1, 2, 3].map((pass) => (
+        <div key={pass} className="flex items-center">
+          {TICKER.map((item, idx) => (
+            <React.Fragment key={idx}>
+              <span className="u-eyebrow text-paper/75 px-8">{item}</span>
+              <span className="w-1 h-1 rounded-full bg-turq shrink-0" />
+            </React.Fragment>
+          ))}
+        </div>
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 export default Ticker;
