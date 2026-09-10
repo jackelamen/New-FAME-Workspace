@@ -3,16 +3,17 @@ import Wordmark from './Wordmark.tsx';
 
 interface NavbarProps {
   scrolled: boolean;
-  onContactClick: () => void;
+  onApply: () => void;
 }
 
 const LINKS = [
-  { name: 'Disciplines', href: '#disciplines' },
-  { name: 'Work', href: '#work' },
-  { name: 'Studio', href: '#studio' },
+  { name: 'Why', href: '#why' },
+  { name: 'The idea', href: '#idea' },
+  { name: 'What you get', href: '#offer' },
+  { name: 'Joining', href: '#joining' },
 ];
 
-const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
+const Navbar: React.FC<NavbarProps> = ({ scrolled, onApply }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -25,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
         <div className="max-w-[82rem] mx-auto px-6 lg:px-12 flex items-center justify-between gap-8">
           <Wordmark small={scrolled} />
 
-          <div className="hidden lg:flex items-center gap-10">
+          <div className="hidden lg:flex items-center gap-8">
             {LINKS.map((link) => (
               <a
                 key={link.name}
@@ -36,10 +37,10 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
               </a>
             ))}
             <button
-              onClick={onContactClick}
-              className="u-label text-[0.6875rem] text-cream border-b border-ember pb-1.5 hover:text-ember transition-colors duration-300"
+              onClick={onApply}
+              className="u-label text-[0.6875rem] bg-ember text-void px-5 py-2.5 hover:bg-cream transition-colors duration-300"
             >
-              Enquire
+              Apply
             </button>
           </div>
 
@@ -72,10 +73,10 @@ const Navbar: React.FC<NavbarProps> = ({ scrolled, onContactClick }) => {
             </a>
           ))}
           <button
-            onClick={() => { setIsOpen(false); onContactClick(); }}
+            onClick={() => { setIsOpen(false); onApply(); }}
             className="u-display text-[2.75rem] text-ember text-left"
           >
-            Enquire
+            Apply
           </button>
         </div>
       </div>

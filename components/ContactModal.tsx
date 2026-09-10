@@ -6,12 +6,12 @@ interface ContactModalProps {
   onClose: () => void;
 }
 
-const INTENTS = [
-  'Brand experience or activation',
-  'Hospitality or F&B concept',
-  'Live event or cultural programme',
-  'Media and content production',
-  'Something else',
+const DISCIPLINES = [
+  'Food: chef, bar, hospitality',
+  'Artistry: design, styling, spatial',
+  'Media: film, photo, edit, writing',
+  'Events: production, promotion, technical',
+  'More than one of these',
 ];
 
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
@@ -19,7 +19,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     name: '',
     email: '',
     company: '',
-    intent: INTENTS[0],
+    intent: DISCIPLINES[0],
     message: '',
   });
   const [sent, setSent] = useState(false);
@@ -40,12 +40,12 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
      POST to a form endpoint when one exists. */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = `${form.intent} — ${form.company || form.name}`;
+    const subject = `Collective application: ${form.name}`;
     const body = [
       `Name: ${form.name}`,
       `Email: ${form.email}`,
-      `Company: ${form.company || '—'}`,
-      `Enquiry: ${form.intent}`,
+      `Portfolio: ${form.company || 'not given'}`,
+      `Discipline: ${form.intent}`,
       '',
       form.message,
     ].join('\n');
@@ -65,7 +65,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
       <div
         role="dialog"
         aria-modal="true"
-        aria-label="Enquire with FAME Entertainment Group"
+        aria-label="Apply to join the FAME collective"
         className="relative w-full max-w-lg bg-pitch border u-rule p-7 md:p-10 rise"
       >
         <button
@@ -94,9 +94,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
           </div>
         ) : (
           <>
-            <p className="u-label text-ember mb-6">Enquiry</p>
+            <p className="u-label text-ember mb-6">Apply</p>
             <p className="u-display text-[clamp(1.9rem,4.5vw,2.5rem)] mb-9 max-w-[16ch]">
-              Tell us about the project.
+              Tell us what you make.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-1">
@@ -121,26 +121,26 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
               />
               <input
                 type="text"
-                placeholder="Company or institution"
-                aria-label="Company or institution"
+                placeholder="Website, portfolio or Instagram"
+                aria-label="Website, portfolio or Instagram"
                 className={field}
                 value={form.company}
                 onChange={(e) => setForm({ ...form, company: e.target.value })}
               />
               <select
-                aria-label="Type of project"
+                aria-label="Your discipline"
                 className={`${field} text-cream`}
                 value={form.intent}
                 onChange={(e) => setForm({ ...form, intent: e.target.value })}
               >
-                {INTENTS.map((intent) => (
+                {DISCIPLINES.map((intent) => (
                   <option key={intent} className="bg-pitch text-cream">{intent}</option>
                 ))}
               </select>
               <textarea
                 required
-                rows={3}
-                placeholder="The brief, in a few lines"
+                rows={4}
+                placeholder="Three things you have made, and what you want from the next two years"
                 aria-label="Your message"
                 className={`${field} resize-none`}
                 value={form.message}
@@ -151,7 +151,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                 type="submit"
                 className="w-full bg-ember text-void py-4 mt-8 u-label text-[0.6875rem] hover:bg-cream hover:text-void transition-colors duration-300"
               >
-                Send enquiry
+                Send application
               </button>
             </form>
 

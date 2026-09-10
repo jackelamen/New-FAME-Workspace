@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero.tsx';
-import Disciplines from './components/Disciplines.tsx';
-import Overlap from './components/Overlap.tsx';
-import Work from './components/Work.tsx';
-import Studio from './components/Studio.tsx';
-import Contact from './components/Contact.tsx';
+import Tension from './components/Tension.tsx';
+import Idea from './components/Idea.tsx';
+import Members from './components/Members.tsx';
+import Offer from './components/Offer.tsx';
+import Fit from './components/Fit.tsx';
+import Joining from './components/Joining.tsx';
+import Invitation from './components/Invitation.tsx';
 import Footer from './components/Footer.tsx';
 import ContactModal from './components/ContactModal.tsx';
 
+/* The page is an argument, read top to bottom: their problem, the idea, who it
+   is for, what they get, what we ask, who it is not for, how to join. Sections
+   are ordered to answer objections in the order they occur to a reader. */
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [contactOpen, setContactOpen] = useState(false);
+  const [applyOpen, setApplyOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -21,51 +26,51 @@ const App: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = contactOpen ? 'hidden' : '';
+    document.body.style.overflow = applyOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
-  }, [contactOpen]);
+  }, [applyOpen]);
 
-  const openContact = () => setContactOpen(true);
+  const openApply = () => setApplyOpen(true);
 
   return (
     <div id="top" className="min-h-screen bg-void text-cream overflow-x-hidden">
-      <Navbar scrolled={scrolled} onContactClick={openContact} />
+      <Navbar scrolled={scrolled} onApply={openApply} />
 
       <main>
-        <Hero onContactClick={openContact} />
+        <Hero onApply={openApply} />
 
-        <section id="disciplines" className="py-24 md:py-36">
-          <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
-            <Disciplines />
-          </div>
+        <section id="why" className="py-28 md:py-40">
+          <Tension />
         </section>
 
-        {/* Recessed ground so the strategic statement sits apart from the
-            list above it without needing a border or a card. */}
-        <section className="py-28 md:py-44 bg-pitch">
-          <Overlap />
+        <section id="idea">
+          <Idea />
         </section>
 
-        <section id="work" className="py-24 md:py-36">
-          <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
-            <Work />
-          </div>
+        <section id="members" className="py-28 md:py-40">
+          <Members />
         </section>
 
-        <section id="studio" className="py-24 md:py-36 bg-pitch">
-          <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
-            <Studio />
-          </div>
+        <section id="offer" className="py-28 md:py-40 bg-pitch">
+          <Offer />
         </section>
 
-        <section id="contact" className="py-28 md:py-44">
-          <Contact onContactClick={openContact} />
+        <section id="fit" className="py-28 md:py-40">
+          <Fit />
+        </section>
+
+        <section id="joining" className="py-28 md:py-40 bg-pitch">
+          <Joining />
+        </section>
+
+        <section id="apply">
+          <Invitation onApply={openApply} />
         </section>
       </main>
 
       <Footer />
 
-      <ContactModal isOpen={contactOpen} onClose={() => setContactOpen(false)} />
+      <ContactModal isOpen={applyOpen} onClose={() => setApplyOpen(false)} />
     </div>
   );
 };

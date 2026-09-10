@@ -8,7 +8,9 @@ export default {
         pitch: '#080808',  // recessed panels
         raise: '#151413',  // lifted surfaces, warm-tinted so it reads as film, not UI grey
         cream: '#F5F0E8',  // brand warm off-white
-        ember: '#C4622D',  // brand burnt orange. 4.75:1 on void. Used sparingly.
+        ember: '#C4622D',
+        // Same hue lifted for text over footage, where flat ember drops to 3.0:1.
+        lift: '#E08344',  // brand burnt orange. 4.75:1 on void. Used sparingly.
         dim: '#98958F',    // cream at 60%, flattened. Secondary copy.
       },
       fontFamily: {

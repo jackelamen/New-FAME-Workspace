@@ -8,8 +8,8 @@ const Footer: React.FC = () => (
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 pb-14">
         <div>
           <Wordmark />
-          <p className="u-body text-[0.95rem] text-dim mt-5 max-w-[30ch]">
-            {PILLARS.map((p) => p.name).join('. ')}.
+          <p className="u-body text-[0.95rem] text-dim mt-5 max-w-[32ch]">
+            A collective forming in Seoul across {PILLARS.map((p) => p.name.toLowerCase()).join(', ')}.
           </p>
         </div>
 
@@ -18,9 +18,10 @@ const Footer: React.FC = () => (
             <p className="u-label text-[0.625rem] text-dim mb-4">Index</p>
             <ul className="space-y-2.5">
               {[
-                { name: 'Disciplines', href: '#disciplines' },
-                { name: 'Work', href: '#work' },
-                { name: 'Studio', href: '#studio' },
+                { name: 'Why', href: '#why' },
+                { name: 'The idea', href: '#idea' },
+                { name: 'What you get', href: '#offer' },
+                { name: 'Joining', href: '#joining' },
               ].map((link) => (
                 <li key={link.name}>
                   <a href={link.href} className="u-body text-[0.95rem] text-cream/80 hover:text-ember transition-colors">
@@ -32,7 +33,7 @@ const Footer: React.FC = () => (
           </div>
 
           <div>
-            <p className="u-label text-[0.625rem] text-dim mb-4">Contact</p>
+            <p className="u-label text-[0.625rem] text-dim mb-4">Applications</p>
             <a href={`mailto:${CONTACT_EMAIL}`} className="u-body text-[0.95rem] text-cream/80 hover:text-ember transition-colors break-all">
               {CONTACT_EMAIL}
             </a>

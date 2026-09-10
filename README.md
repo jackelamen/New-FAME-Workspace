@@ -1,6 +1,11 @@
-# fameentgroup.com
+# FAME Collective
 
-Marketing site for FAME Entertainment Group, a Seoul creative and experiential company.
+Recruitment site for FAME, a collective of artists and entrepreneurs forming in
+Seoul across food, artistry, media and events.
+
+This is **not** a portfolio or a company site. It is a pitch aimed at one
+reader: someone who could join. Every section exists to answer an objection
+they will have, in the order they will have it.
 
 ## Run locally
 
@@ -9,72 +14,99 @@ npm install
 npm run dev
 ```
 
-No environment variables are required. `npm run build` compiles the client bundle,
-renders the app to static HTML, and injects it into `dist/index.html`.
+`npm run build` compiles the bundle, prerenders the app to static HTML and
+injects it into `dist/index.html`.
 
 ## The name
 
 **FAME = Food. Artistry. Media. Events.**
 
-This is the current and only acronym. An earlier version (Fashion, Arts, Music,
-Entertainment) is retired and must not appear anywhere on the site, including in
-historical or "founded as" copy.
+The current and only acronym. The earlier one (Fashion, Arts, Music,
+Entertainment) is retired and must not appear anywhere. `PILLARS` in
+`constants.tsx` is the single source of truth, and here the four letters also
+define who is eligible to join.
 
-The order is fixed because it spells the company name. `PILLARS` in
-`constants.tsx` is the single source of truth: the hero, the disciplines list and
-the footer all derive from it, so the four never drift out of sync.
+## The argument
 
-## Structure
+The page order is the pitch, and it should not be shuffled casually:
 
-- `index.html` — fonts, meta, JSON-LD
-- `index.css` — type utilities and the entrance animation
-- `tailwind.config.js` — colour and font tokens
-- `constants.tsx` — all site copy and content; edit here, not in components
-- `components/` — one file per section
+| Section | Job |
+|---|---|
+| Hero | The invitation, and that it is forming now |
+| Why | Their problem, before ours |
+| The idea | Collective, not agency. Ownership, not a roster |
+| Members | The four letters as a membership map |
+| What you get | Five concrete benefits, then what we ask in return |
+| Honestly | Who it is not for, which makes the yes column credible |
+| Joining | Four steps, so it reads real rather than aspirational |
+| The founding cohort | Scarcity that is true, and the apply CTA |
+
+Copy stays sparse and states results, not process. That is the brand voice.
+
+## Footage
+
+Every background clip is declared in `CLIPS` in `constants.tsx`:
+
+```ts
+export const CLIPS: Record<string, Clip> = {
+  hero:       { src: null, poster: null },
+  tension:    { src: null, poster: null },
+  idea:       { src: null, poster: null },
+  invitation: { src: null, poster: null },
+};
+```
+
+Set `src` to an mp4 URL and that section becomes video-led. Leave it `null` and
+`Backdrop` renders a filmic fallback (two slow counter-drifting warm fields plus
+a grain plate). **No section depends on footage existing**, so clips can land one
+at a time with no layout change.
+
+Shooting or sourcing notes:
+
+- 1080p, muted, 8 to 12 seconds, under ~4MB. It loops, so pick a clip whose
+  first and last frames are close.
+- Self-host under `public/video/` rather than hotlinking a stock CDN. A
+  hotlinked clip breaks silently when the host reorganises it.
+- Set a `poster` frame too. It is what shows on slow connections and on
+  browsers that block autoplay.
+- Good subjects, in priority order: a room being built before an event; hands
+  working (kitchen pass, camera, lighting desk); a crowd at night, shot wide
+  and dark. Avoid anything that reads as stock-cheerful.
+
+**Licensing:** if you use stock, Pexels, Coverr and Mixkit all permit
+commercial use without attribution. Check the specific clip's licence before it
+goes live, and keep a record of where each came from.
 
 ## Design system
 
 | Token | Value | Use |
 |---|---|---|
-| `void` | `#0D0D0D` | Brand near-black. Page ground. |
-| `pitch` | `#080808` | Recessed sections and the enquiry panel. |
-| `raise` | `#151413` | Lifted surfaces. Warm-tinted, not neutral grey. |
-| `cream` | `#F5F0E8` | Brand off-white. All primary text. |
-| `ember` | `#C4622D` | Brand burnt orange. **Sparingly.** |
-| `dim` | `#98958F` | Secondary copy. |
+| `void` | `#0D0D0D` | Page ground |
+| `pitch` | `#080808` | Recessed sections, application panel |
+| `raise` | `#151413` | Lifted surfaces |
+| `cream` | `#F5F0E8` | Primary text |
+| `ember` | `#C4622D` | Brand accent. Text on plain grounds, and button fills |
+| `lift` | `#E08344` | The same hue lifted, for text **over footage** |
+| `dim` | `#98958F` | Secondary text on plain grounds only |
 
-Type: **Cormorant Garamond** (display) and **Figtree** (everything functional).
-Utilities `u-display`, `u-display-it`, `u-label`, `u-body`, `u-rule` are in `index.css`.
+Type: **Cormorant Garamond** (display) and **Figtree** (functional).
 
-Rules that keep it on-brand:
+Rules that keep it working:
 
-- Cormorant is display only. It is a high-contrast face and gets weak below ~1.5rem.
-- Ember earns its place or it comes out. Currently: the four hero initials (which
-  spell FAME), section labels, rules under links, and the enquiry button.
-- Every text pair passes WCAG AA on its own ground. Ember on `void` is 4.75:1;
-  the enquiry button is `void` on ember at 4.75:1, not cream on ember (3.61:1).
-- Layout is built from hairline rules, not cards or boxes.
+- Cormorant is display only. It falls apart below ~1.5rem.
+- **Accent colour over a backdrop must be `lift`, never `ember`.** At the
+  brightest point a backdrop can reach, flat ember measures 3.0:1 and fails AA.
+  `lift` holds 5.2:1 there and 6.9:1 on plain void.
+- `dim` is for plain grounds only. Over a backdrop use `cream/75`.
+- Solid ember buttons carry `text-void` (4.75:1), never `text-cream` (3.61:1).
+- `Backdrop` uses a heavier plate over video than over the fallback, because we
+  cannot know which frame of a clip is showing.
 - One entrance animation on load. Nothing animates on scroll.
+- No em dashes anywhere in the copy.
 
-## Imagery
-
-The brand is image-forward and the site is built for photography that does not
-exist in the repo yet. Nothing ships with stock imagery standing in for FAME's
-own work.
-
-- **Hero still** — set `HERO_IMAGE` in `constants.tsx` to a path under `public/`.
-  Until then the hero renders a quiet tonal panel.
-- **Work** — each entry in `WORK` has `image: null`. Add a file under
-  `public/work/` and set the path. The Work section renders as a typographic
-  index while every entry is imageless, and switches to the image-led grid as
-  soon as any entry has one. The heading changes with it ("What we produce" →
-  "Selected work"), so the page never claims a portfolio it is not showing.
-
-Project titles in `WORK` are formats, not named client projects. Replace them
-with real titles once client clearances are in hand.
-
-## Enquiry form
+## Applications
 
 `components/ContactModal.tsx` composes a `mailto:` draft. There is no backend.
-To wire a real endpoint, replace `handleSubmit` with a POST and keep the mailto
-as the fallback.
+For a real intake, replace `handleSubmit` with a POST to a form endpoint and
+keep the mailto as the fallback. Worth doing before this link goes out widely:
+applications are the entire point of the page.

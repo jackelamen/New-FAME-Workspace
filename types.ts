@@ -5,17 +5,22 @@ export interface Pillar {
   detail: string;
 }
 
-export interface WorkItem {
-  id: string;
-  title: string;
-  category: string;
-  pillars: string[];
-  /* Drop a file in /public/work and put its path here. Null renders the
-     placeholder panel instead of a broken image. */
-  image: string | null;
+/* A background clip. `src` is an mp4 URL (self-hosted under /public/video, or a
+   stock CDN). Null renders the filmic motion fallback instead, so every section
+   is complete with or without footage. */
+export interface Clip {
+  src: string | null;
+  poster?: string | null;
 }
 
-export interface Client {
-  label: string;
+export interface Offer {
+  index: string;
+  title: string;
+  detail: string;
+}
+
+export interface Step {
+  index: string;
+  title: string;
   detail: string;
 }
