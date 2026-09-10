@@ -4,17 +4,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#101211',
-        paper: '#F6F5F2',
-        chalk: '#FFFFFF',
-        haze: '#EAE8E2',
-        turq: '#40E0D0',
-        deep: '#0A5F58',
-        muted: '#5A5F5C',
+        void: '#0D0D0D',   // brand near-black, the page ground
+        pitch: '#080808',  // recessed panels
+        raise: '#151413',  // lifted surfaces, warm-tinted so it reads as film, not UI grey
+        cream: '#F5F0E8',  // brand warm off-white
+        ember: '#C4622D',  // brand burnt orange. 4.75:1 on void. Used sparingly.
+        dim: '#98958F',    // cream at 60%, flattened. Secondary copy.
       },
       fontFamily: {
-        display: ['Archivo', 'Helvetica Neue', 'Arial', 'sans-serif'],
-        read: ['Newsreader', 'Georgia', 'serif'],
+        display: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
+        sans: ['Figtree', 'Helvetica Neue', 'Arial', 'sans-serif'],
       },
     },
   },

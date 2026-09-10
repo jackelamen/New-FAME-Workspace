@@ -1,55 +1,51 @@
 import React from 'react';
-import { CONTACT_EMAIL, MARKETS } from '../constants.tsx';
-
-const NAV = [
-  { name: 'What we do', href: '#services' },
-  { name: 'How it works', href: '#process' },
-  { name: 'The team', href: '#capabilities' },
-  { name: 'Where we came from', href: '#story' },
-];
+import { CONTACT_EMAIL, PILLARS } from '../constants.tsx';
+import Wordmark from './Wordmark.tsx';
 
 const Footer: React.FC = () => (
-  <footer className="bg-ink text-paper pt-20 pb-10">
-    <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 pb-16">
-        <div className="md:col-span-5">
-          <div className="flex items-baseline gap-2 mb-5">
-            <span className="u-display text-[1.35rem] leading-none">FAME</span>
-            <span className="u-eyebrow text-paper/55 text-[0.6875rem]">Entertainment Group</span>
-          </div>
-          <p className="u-read text-[1.05rem] text-paper/70 max-w-[38ch]">
-            A Seoul lifestyle trading house with a creative team attached. We move brands
-            between Korea, the United States and Southeast Asia.
+  <footer className="border-t u-rule pt-14 pb-10">
+    <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-10 pb-14">
+        <div>
+          <Wordmark />
+          <p className="u-body text-[0.95rem] text-dim mt-5 max-w-[30ch]">
+            {PILLARS.map((p) => p.name).join('. ')}.
           </p>
         </div>
 
-        <div className="md:col-span-3">
-          <p className="u-eyebrow text-paper/60 mb-5">Sections</p>
-          <ul className="space-y-3 text-[1rem] text-paper/80">
-            {NAV.map((link) => (
-              <li key={link.name}>
-                <a href={link.href} className="hover:text-turq transition-colors">{link.name}</a>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className="flex flex-col sm:flex-row gap-10 sm:gap-16">
+          <div>
+            <p className="u-label text-[0.625rem] text-dim mb-4">Index</p>
+            <ul className="space-y-2.5">
+              {[
+                { name: 'Disciplines', href: '#disciplines' },
+                { name: 'Work', href: '#work' },
+                { name: 'Studio', href: '#studio' },
+              ].map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="u-body text-[0.95rem] text-cream/80 hover:text-ember transition-colors">
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        <div className="md:col-span-4">
-          <p className="u-eyebrow text-paper/60 mb-5">Get in touch</p>
-          <a
-            href={`mailto:${CONTACT_EMAIL}`}
-            className="text-[1rem] text-paper hover:text-turq transition-colors break-all"
-          >
-            {CONTACT_EMAIL}
-          </a>
-          <p className="text-[1rem] text-paper/70 mt-4">Seoul and Gyeonggi, South Korea</p>
-          <p className="text-[1rem] text-paper/70 mt-1">{MARKETS.join(' · ')}</p>
+          <div>
+            <p className="u-label text-[0.625rem] text-dim mb-4">Contact</p>
+            <a href={`mailto:${CONTACT_EMAIL}`} className="u-body text-[0.95rem] text-cream/80 hover:text-ember transition-colors break-all">
+              {CONTACT_EMAIL}
+            </a>
+            <p className="u-body text-[0.95rem] text-dim mt-2.5">Seoul, South Korea</p>
+          </div>
         </div>
       </div>
 
-      <div className="pt-8 border-t border-paper/15 flex flex-col sm:flex-row justify-between gap-4 text-[0.9rem] text-paper/60">
-        <p>© {new Date().getFullYear()} FAME Entertainment Group</p>
-        <p>Bridging culture and commerce since 2016</p>
+      <div className="border-t u-rule pt-7 flex flex-col sm:flex-row justify-between gap-3">
+        <p className="u-label text-[0.625rem] text-dim">
+          © {new Date().getFullYear()} FAME Entertainment Group
+        </p>
+        <p className="u-label text-[0.625rem] text-dim">Food. Artistry. Media. Events.</p>
       </div>
     </div>
   </footer>

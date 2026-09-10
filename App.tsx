@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.tsx';
 import Hero from './components/Hero.tsx';
-import Ticker from './components/Ticker.tsx';
-import Services from './components/Services.tsx';
-import Process from './components/Process.tsx';
-import Capabilities from './components/Capabilities.tsx';
-import Story from './components/Story.tsx';
-import ClosingCTA from './components/ClosingCTA.tsx';
+import Disciplines from './components/Disciplines.tsx';
+import Overlap from './components/Overlap.tsx';
+import Work from './components/Work.tsx';
+import Studio from './components/Studio.tsx';
+import Contact from './components/Contact.tsx';
 import Footer from './components/Footer.tsx';
 import ContactModal from './components/ContactModal.tsx';
 
@@ -29,42 +28,38 @@ const App: React.FC = () => {
   const openContact = () => setContactOpen(true);
 
   return (
-    <div id="top" className="min-h-screen bg-paper text-ink overflow-x-hidden">
+    <div id="top" className="min-h-screen bg-void text-cream overflow-x-hidden">
       <Navbar scrolled={scrolled} onContactClick={openContact} />
 
       <main>
         <Hero onContactClick={openContact} />
 
-        <Ticker />
-
-        <section id="services" className="py-24 md:py-32">
-          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
-            <Services onContactClick={openContact} />
+        <section id="disciplines" className="py-24 md:py-36">
+          <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
+            <Disciplines />
           </div>
         </section>
 
-        {/* The one dark block on the page. The brand turquoise only reads
-            properly against it, so the process lives here. */}
-        <section id="process" className="py-24 md:py-32 bg-ink">
-          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
-            <Process />
+        {/* Recessed ground so the strategic statement sits apart from the
+            list above it without needing a border or a card. */}
+        <section className="py-28 md:py-44 bg-pitch">
+          <Overlap />
+        </section>
+
+        <section id="work" className="py-24 md:py-36">
+          <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
+            <Work />
           </div>
         </section>
 
-        <section id="capabilities" className="py-24 md:py-32">
-          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
-            <Capabilities />
+        <section id="studio" className="py-24 md:py-36 bg-pitch">
+          <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
+            <Studio />
           </div>
         </section>
 
-        <section id="story" className="py-24 md:py-32 bg-haze">
-          <div className="max-w-[76rem] mx-auto px-6 lg:px-10">
-            <Story />
-          </div>
-        </section>
-
-        <section id="contact" className="py-24 md:py-32">
-          <ClosingCTA onContactClick={openContact} />
+        <section id="contact" className="py-28 md:py-44">
+          <Contact onContactClick={openContact} />
         </section>
       </main>
 

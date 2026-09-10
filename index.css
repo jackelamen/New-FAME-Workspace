@@ -4,101 +4,82 @@
 
 @layer base {
   body {
-    @apply bg-paper text-ink;
-    font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    @apply bg-void text-cream;
+    font-family: 'Figtree', 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background: theme('colors.turq');
-    color: theme('colors.ink');
+    background: theme('colors.ember');
+    color: theme('colors.cream');
   }
 
   :focus-visible {
-    outline: 2px solid theme('colors.deep');
-    outline-offset: 3px;
-    border-radius: 2px;
+    outline: 1px solid theme('colors.ember');
+    outline-offset: 4px;
   }
 }
 
 @layer components {
-  /* Display type. The width axis is what gives Archivo a voice here; without it
-     this reads like every other grotesque. */
+  /* Cormorant Garamond is a high-contrast display face: it earns its keep at
+     large sizes and falls apart at small ones. Display only, never UI. */
   .u-display {
-    font-family: 'Archivo', sans-serif;
-    font-variation-settings: 'wdth' 112, 'wght' 800;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-    line-height: 0.88;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.015em;
   }
 
-  .u-display-tight {
-    font-family: 'Archivo', sans-serif;
-    font-variation-settings: 'wdth' 88, 'wght' 700;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
+  /* The one place the serif goes italic. Reserved for the pillar words, so the
+     gesture stays rare enough to mean something. */
+  .u-display-it {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1;
+    letter-spacing: -0.01em;
   }
 
-  /* Eyebrow labels. 13px is the floor: the old site set these at 10px with
-     0.4em tracking, which is where most of the "hard to read" came from. */
-  .u-eyebrow {
-    font-variation-settings: 'wdth' 100, 'wght' 650;
+  /* Figtree carries everything functional. 13px floor, restrained tracking. */
+  .u-label {
+    font-family: 'Figtree', sans-serif;
     font-size: 0.8125rem;
-    letter-spacing: 0.14em;
+    font-weight: 500;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
   }
 
-  .u-read {
-    font-family: 'Newsreader', Georgia, serif;
-    font-weight: 400;
-    line-height: 1.62;
+  .u-body {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 350;
+    line-height: 1.7;
   }
 
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  /* Hairline divider. The whole layout is built on these rather than boxes. */
+  .u-rule {
+    border-color: rgba(245, 240, 232, 0.14);
   }
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }
 
 @layer utilities {
   /* One orchestrated entrance on load. Nothing animates on scroll. */
   @keyframes rise {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 18px, 0);
-    }
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
+    from { opacity: 0; transform: translate3d(0, 14px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
   }
-  .rise {
-    animation: rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
-  }
+  .rise { animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
 
-  @keyframes marquee {
-    0% {
-      transform: translate3d(0, 0, 0);
-    }
-    100% {
-      transform: translate3d(-50%, 0, 0);
-    }
+  @keyframes fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
   }
-  .marquee {
-    display: flex;
-    width: max-content;
-    animation: marquee 48s linear infinite;
-    will-change: transform;
-  }
+  .fade { animation: fade 1.4s ease-out both; }
 
   @media (prefers-reduced-motion: reduce) {
-    .rise,
-    .marquee {
-      animation: none !important;
-    }
+    .rise, .fade { animation: none !important; }
   }
 }

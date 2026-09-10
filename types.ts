@@ -1,30 +1,21 @@
-export interface Service {
-  id: string;
-  index: string;
-  title: string;
-  audience: string;
-  summary: string;
-  deliverables: string[];
-}
-
-export interface Capability {
-  id: string;
-  title: string;
+export interface Pillar {
+  letter: string;
+  name: string;
   line: string;
   detail: string;
 }
 
-export interface Step {
-  index: string;
+export interface WorkItem {
+  id: string;
   title: string;
-  detail: string;
-  output: string;
+  category: string;
+  pillars: string[];
+  /* Drop a file in /public/work and put its path here. Null renders the
+     placeholder panel instead of a broken image. */
+  image: string | null;
 }
 
-export interface TimelineEvent {
-  year: string;
+export interface Client {
   label: string;
-  title: string;
-  description: string;
-  milestones: string[];
+  detail: string;
 }
