@@ -8,12 +8,12 @@ interface InvitationProps {
 
 const Invitation: React.FC<InvitationProps> = ({ onApply }) => (
   <div className="relative py-36 md:py-56 overflow-hidden">
-    <Backdrop clip="invitation" dim={0.66} />
+    <Backdrop clip="invitation" dim={0.76} />
 
     <div className="relative z-10 max-w-[82rem] mx-auto px-6 lg:px-12">
-      <p className="u-label text-lift mb-10">The founding cohort</p>
+      <p className="u-label text-cream text-scrim mb-10">The founding cohort</p>
 
-      <p className="u-display text-[clamp(2.4rem,7vw,5.5rem)] max-w-[15ch] mb-12">
+      <p className="u-display text-scrim text-[clamp(2.4rem,7vw,5.5rem)] max-w-[15ch] mb-12">
         We would rather start with twelve of the right people.
       </p>
 

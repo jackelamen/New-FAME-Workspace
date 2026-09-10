@@ -7,16 +7,16 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onApply }) => (
   <header className="relative min-h-[100svh] flex flex-col justify-end pt-32 pb-10 overflow-hidden">
-    <Backdrop clip="hero" dim={0.58} />
+    <Backdrop clip="hero" dim={0.74} />
 
     <div className="relative z-10 max-w-[82rem] mx-auto px-6 lg:px-12 w-full">
-      <p className="u-label text-lift mb-8 fade" style={{ animationDelay: '200ms' }}>
+      <p className="u-label text-cream text-scrim mb-8 fade" style={{ animationDelay: '200ms' }}>
         Forming now · Seoul
       </p>
 
-      <h1 className="u-display text-[clamp(2.6rem,min(7vw,12vh),5.75rem)] max-w-[18ch] rise" style={{ animationDelay: '320ms' }}>
+      <h1 className="u-display text-scrim text-[clamp(2.6rem,min(7vw,12vh),5.75rem)] max-w-[18ch] rise" style={{ animationDelay: '320ms' }}>
         A collective for the people who actually make
-        <span className="text-lift"> the night happen.</span>
+        <span className="text-cream/95"> the night happen.</span>
       </h1>
 
       <div

@@ -63,6 +63,17 @@
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Belt-and-suspenders for text sitting on Backdrop footage. The flat plate
+     is sized against the worst pixel sampled across each clip's loop, but a
+     stock clip can carry a highlight my sample missed (a lens flare, a glass
+     glint). A soft shadow costs nothing when the plate is already doing its
+     job, and saves the layout the one time it isn't. Not counted by WCAG's
+     contrast formula, which only reasons about flat colour, but this is the
+     literal mechanism most video-hero text relies on in production. */
+  .text-scrim {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 3px 16px rgba(0, 0, 0, 0.45);
+  }
 }
 
 @layer utilities {

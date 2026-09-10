@@ -3,12 +3,12 @@ import Backdrop from './Backdrop.tsx';
 
 const Idea: React.FC = () => (
   <div className="relative py-32 md:py-52 overflow-hidden">
-    <Backdrop clip="idea" dim={0.7} />
+    <Backdrop clip="idea" dim={0.76} />
 
     <div className="relative z-10 max-w-[82rem] mx-auto px-6 lg:px-12">
-      <p className="u-label text-lift mb-10">The idea</p>
+      <p className="u-label text-cream text-scrim mb-10">The idea</p>
 
-      <p className="u-display text-[clamp(2.2rem,6vw,5rem)] max-w-[19ch]">
+      <p className="u-display text-scrim text-[clamp(2.2rem,6vw,5rem)] max-w-[19ch]">
         Not an agency you work for. A collective you belong to.
       </p>
 

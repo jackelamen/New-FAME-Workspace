@@ -14,10 +14,10 @@ export const CONTACT_EMAIL = 'jack.lyons@fameentgroup.com';
    under ~4MB, 1080p, muted, 8-12 seconds, and it will loop invisibly.
 --------------------------------------------------------------------------- */
 export const CLIPS: Record<string, Clip> = {
-  hero: { src: null, poster: null },
+  hero: { src: '/video/hero.mp4', poster: '/video/hero-poster.jpg' },
   tension: { src: null, poster: null },
-  idea: { src: null, poster: null },
-  invitation: { src: null, poster: null },
+  idea: { src: '/video/idea.mp4', poster: '/video/idea-poster.jpg' },
+  invitation: { src: '/video/invitation.mp4', poster: '/video/invitation-poster.jpg' },
 };
 
 /* The name is the offer. Order is fixed: it spells FAME. */
