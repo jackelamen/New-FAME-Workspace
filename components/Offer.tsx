@@ -41,12 +41,13 @@ const Offer: React.FC = () => {
     const measure = () => {
       frame = 0;
       const rect = el.getBoundingClientRect();
-      /* Progress across only the pinned portion: 0 the moment the section
-         locks, 1 as it releases. Anything looser makes the panels start
-         drifting before the section is actually holding the viewport. */
       const distance = rect.height - window.innerHeight;
       const travelled = Math.min(Math.max(-rect.top, 0), distance);
-      const p = distance > 0 ? travelled / distance : 0;
+      /* Reserve the first 15% of scroll distance for the header to settle,
+         then map the remaining 85% to the full panel translation. This keeps
+         the first panel fully readable before the slide begins. */
+      const raw = distance > 0 ? travelled / distance : 0;
+      const p = Math.max(0, (raw - 0.15) / 0.85);
       const span = rail.scrollWidth - window.innerWidth + 96;
       rail.style.transform = `translate3d(${-p * Math.max(span, 0)}px,0,0)`;
     };
@@ -89,7 +90,7 @@ const Offer: React.FC = () => {
 
   return (
     <>
-      <div ref={outer} style={pinned ? { height: `${OFFER.length * 62}vh` } : undefined}>
+      <div ref={outer} style={pinned ? { height: `${OFFER.length * 100}vh` } : undefined}>
         <div className={pinned ? 'sticky top-0 flex h-screen flex-col justify-center overflow-hidden' : ''}>
           <div ref={head} className="mx-auto w-full max-w-[110rem] px-[var(--gut)]">
             <div className="r-draw h-px w-full bg-cream/25" />
