@@ -34,7 +34,7 @@ const App: React.FC = () => {
   const openApply = () => setApplyOpen(true);
 
   return (
-    <div id="top" className="relative min-h-screen overflow-x-hidden bg-void text-cream">
+    <div id="top" className="relative min-h-screen bg-void text-cream">
       <Grid />
 
       <div className="relative z-10">
@@ -46,7 +46,7 @@ const App: React.FC = () => {
           <section id="why" className="py-36 md:py-56"><Tension /></section>
           <section id="idea"><Idea /></section>
           <section id="members" className="py-36 md:py-56"><Members /></section>
-          <section id="offer" className="py-36 md:py-56"><Offer /></section>
+          <section id="offer"><Offer /></section>
           <section id="fit" className="py-36 md:py-56"><Fit /></section>
           <section id="joining" className="py-36 md:py-56"><Joining /></section>
           <section id="apply"><Invitation onApply={openApply} /></section>

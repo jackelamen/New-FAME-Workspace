@@ -71,7 +71,7 @@ const Offer: React.FC = () => {
       {OFFER.map((item, i) => (
         <article
           key={item.index}
-          className="flex w-[85vw] shrink-0 flex-col justify-between border-t u-rule pt-8 sm:w-[60vw] lg:w-[34vw] lg:pt-10"
+          className="flex w-[85vw] shrink-0 flex-col justify-between border-t u-rule pt-8 sm:w-[70vw] lg:w-[55vw] lg:pt-10"
         >
           <div>
             <div className="flex items-baseline justify-between">
