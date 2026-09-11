@@ -2,126 +2,160 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------------------------------------------------
+   TYPE SCALE
+
+   The previous scale ran every headline through roughly the same 2-5rem band,
+   which is why nothing on the page dominated anything else. This one is built
+   on jumps, not a ramp: 10px set caps sitting next to 240px display. The gap
+   between the two is the hierarchy.
+--------------------------------------------------------------------------- */
+:root {
+  /* The hero is four lines inside one viewport, so it is bound by height as
+     much as width. --t-mega is for the shorter closing statement, which has
+     room to run. */
+  --t-hero: clamp(2.4rem, min(8.5vw, 12.5vh), 8.5rem);
+  --t-mega: clamp(3rem, 11.5vw, 11rem);
+  --t-xl:   clamp(2.4rem, 7.5vw, 6.5rem);
+  --t-lg:   clamp(1.8rem, 3.4vw, 3rem);
+  --t-md:   clamp(1.25rem, 1.7vw, 1.6rem);
+
+  --micro:  0.625rem;
+  --small:  0.6875rem;
+
+  --gut: 1.5rem;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  :root { --gut: 3rem; }
+}
+
 @layer base {
   body {
     @apply bg-void text-cream;
     font-family: 'Figtree', 'Helvetica Neue', Arial, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
-  ::selection {
-    background: theme('colors.ember');
-    color: theme('colors.cream');
-  }
+  ::selection { background: theme('colors.ember'); color: theme('colors.cream'); }
 
   :focus-visible {
-    outline: 1px solid theme('colors.ember');
+    outline: 1px solid theme('colors.lift');
     outline-offset: 4px;
   }
 }
 
 @layer components {
-  /* Cormorant Garamond is a high-contrast display face: it earns its keep at
-     large sizes and falls apart at small ones. Display only, never UI. */
+  /* Display. Cormorant carries the voice; it only earns that at size, with
+     the leading pulled well under 1 and the tracking negative. */
   .u-display {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 300;
-    line-height: 0.98;
-    letter-spacing: -0.015em;
+    line-height: 0.86;
+    letter-spacing: -0.028em;
   }
-
-  /* The one place the serif goes italic. Reserved for the pillar words, so the
-     gesture stays rare enough to mean something. */
   .u-display-it {
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 300;
     font-style: italic;
-    line-height: 1;
-    letter-spacing: -0.01em;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
   }
 
-  /* Figtree carries everything functional. 13px floor, restrained tracking. */
+  /* Drawing-sheet annotation. Deliberately tiny against the display sizes:
+     the distance between them is the whole point. */
+  .u-mark {
+    font-family: 'Figtree', sans-serif;
+    font-size: var(--micro);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
   .u-label {
     font-family: 'Figtree', sans-serif;
-    font-size: 0.8125rem;
+    font-size: var(--small);
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
   }
-
   .u-body {
     font-family: 'Figtree', sans-serif;
-    font-weight: 350;
-    line-height: 1.7;
+    font-weight: 300;
+    line-height: 1.72;
   }
 
-  /* Hairline divider. The whole layout is built on these rather than boxes. */
-  .u-rule {
-    border-color: rgba(245, 240, 232, 0.14);
-  }
+  .u-rule { border-color: rgba(245, 240, 232, 0.14); }
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  /* Belt-and-suspenders for text sitting on Backdrop footage. The flat plate
-     is sized against the worst pixel sampled across each clip's loop, but a
-     stock clip can carry a highlight my sample missed (a lens flare, a glass
-     glint). A soft shadow costs nothing when the plate is already doing its
-     job, and saves the layout the one time it isn't. Not counted by WCAG's
-     contrast formula, which only reasons about flat colour, but this is the
-     literal mechanism most video-hero text relies on in production. */
+  /* Text over footage. The plate is sized against the worst pixel sampled
+     across each clip, but a clip can carry a highlight that sampling missed. */
   .text-scrim {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 3px 16px rgba(0, 0, 0, 0.45);
   }
 }
 
+/* ---------------------------------------------------------------------------
+   MOTION
+
+   Everything is gated on `.has-js`, which an inline script sets before first
+   paint. Without JS, or with reduced motion, every element renders in its
+   final state and nothing below applies.
+--------------------------------------------------------------------------- */
 @layer utilities {
-  /* One orchestrated entrance on load. Nothing animates on scroll. */
-  @keyframes rise {
-    from { opacity: 0; transform: translate3d(0, 14px, 0); }
-    to   { opacity: 1; transform: translate3d(0, 0, 0); }
-  }
-  .rise { animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  /* Line-by-line mask reveal. The line rises out from behind its own top
+     edge, which reads as type being set rather than a div fading in. */
+  .r-line { display: block; overflow: hidden; }
+  .r-line > * { display: block; }
 
-  @keyframes fade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  .has-js .r-line > * {
+    transform: translate3d(0, 105%, 0);
+    transition: transform 1.05s var(--ease);
+    transition-delay: var(--d, 0ms);
   }
-  .fade { animation: fade 1.4s ease-out both; }
+  .has-js .r-line.is-in > *,
+  .has-js .is-in .r-line > * { transform: translate3d(0, 0, 0); }
 
-  @media (prefers-reduced-motion: reduce) {
-    .rise, .fade { animation: none !important; }
+  /* Quiet lift for body copy and blocks. */
+  .has-js .r-up {
+    opacity: 0;
+    transform: translate3d(0, 1.75rem, 0);
+    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+    transition-delay: var(--d, 0ms);
   }
-}
+  .has-js .r-up.is-in,
+  .has-js .is-in .r-up { opacity: 1; transform: none; }
 
-@layer utilities {
-  /* Filmic fallback for sections with no footage yet. Two warm fields drift
-     against each other slowly enough to read as a moving image rather than as
-     a CSS animation. */
-  @keyframes drift-a {
-    0%   { transform: translate3d(-6%, -4%, 0) scale(1.15); }
-    50%  { transform: translate3d(5%, 3%, 0) scale(1.28); }
-    100% { transform: translate3d(-6%, -4%, 0) scale(1.15); }
+  /* Rules draw rather than appear. This is the construction idea in its
+     smallest form and it is used everywhere a hairline sits. */
+  .has-js .r-draw {
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 1.2s var(--ease);
+    transition-delay: var(--d, 0ms);
   }
-  @keyframes drift-b {
-    0%   { transform: translate3d(6%, 5%, 0) scale(1.2); }
-    50%  { transform: translate3d(-5%, -3%, 0) scale(1.1); }
-    100% { transform: translate3d(6%, 5%, 0) scale(1.2); }
-  }
-  .drift-a {
-    background: radial-gradient(48% 42% at 32% 34%, rgba(196, 98, 45, 0.42) 0%, transparent 68%);
-    animation: drift-a 38s ease-in-out infinite;
-    will-change: transform;
-  }
-  .drift-b {
-    background: radial-gradient(52% 46% at 70% 62%, rgba(120, 52, 26, 0.40) 0%, transparent 66%);
-    animation: drift-b 46s ease-in-out infinite;
-    will-change: transform;
-  }
+  .has-js .r-draw.is-in,
+  .has-js .is-in .r-draw { transform: scaleX(1); }
 
-  /* Grain plate. Sits over both footage and fallback so the two share a
-     surface, which is what stops swapped-in video looking pasted on. */
+  .has-js .r-draw-y {
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: transform 1.4s var(--ease);
+    transition-delay: var(--d, 0ms);
+  }
+  .has-js .r-draw-y.is-in,
+  .has-js .is-in .r-draw-y { transform: scaleY(1); }
+
+  /* Scroll-linked. `--p` runs 0 to 1 across the element's pass through the
+     viewport; these only read it, so the motion stays tunable in CSS. */
+  .p-slow { transform: translate3d(0, calc((var(--p, 0.5) - 0.5) * -14%), 0); }
+  .p-rise { transform: translate3d(0, calc((var(--p, 0.5) - 0.5) * -5rem), 0); }
+
   .grain {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
     opacity: 0.16;
@@ -129,6 +163,38 @@
     pointer-events: none;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .has-js .r-line > *,
+    .has-js .r-up,
+    .has-js .r-draw,
+    .has-js .r-draw-y {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+    .p-slow, .p-rise { transform: none !important; }
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer utilities {
+  /* Filmic fallback for any clip slot still empty. */
+  @keyframes drift-a {
+    0%, 100% { transform: translate3d(-6%, -4%, 0) scale(1.15); }
+    50%      { transform: translate3d(5%, 3%, 0) scale(1.28); }
+  }
+  @keyframes drift-b {
+    0%, 100% { transform: translate3d(6%, 5%, 0) scale(1.2); }
+    50%      { transform: translate3d(-5%, -3%, 0) scale(1.1); }
+  }
+  .drift-a {
+    background: radial-gradient(48% 42% at 32% 34%, rgba(196, 98, 45, 0.42) 0%, transparent 68%);
+    animation: drift-a 38s ease-in-out infinite;
+  }
+  .drift-b {
+    background: radial-gradient(52% 46% at 70% 62%, rgba(120, 52, 26, 0.40) 0%, transparent 66%);
+    animation: drift-b 46s ease-in-out infinite;
+  }
   @media (prefers-reduced-motion: reduce) {
     .drift-a, .drift-b { animation: none !important; }
   }

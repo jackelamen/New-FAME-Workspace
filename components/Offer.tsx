@@ -1,51 +1,146 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { OFFER, ASKS } from '../constants.tsx';
+import { useReveal } from '../lib/motion.ts';
 
-const Offer: React.FC = () => (
-  <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
-    <p className="u-label text-ember mb-10">What you get</p>
-    <p className="u-display text-[clamp(2rem,5vw,3.75rem)] max-w-[20ch] mb-16 md:mb-24">
-      Five things that are hard to get on your own.
-    </p>
+/* Sheet 04.
 
-    <div className="border-t u-rule">
-      {OFFER.map((item) => (
+   The one place the page changes axis. Everything else reads top to bottom;
+   the five things you get move sideways while the section holds itself pinned.
+   A single deliberate break carries more than motion sprinkled everywhere, and
+   it lands on the part of the argument that actually has to convert.
+
+   Desktop only. On a phone this becomes an ordinary stack: hijacking a small
+   screen's scroll to move content sideways is a way to lose the reader. */
+const Offer: React.FC = () => {
+  const head = useReveal<HTMLDivElement>();
+  const asks = useReveal<HTMLDivElement>();
+  const outer = useRef<HTMLDivElement>(null);
+  const track = useRef<HTMLDivElement>(null);
+  const [pinned, setPinned] = useState(false);
+
+  useEffect(() => {
+    const query = window.matchMedia('(min-width: 1024px)');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const sync = () => setPinned(query.matches && !reduced.matches);
+    sync();
+    query.addEventListener('change', sync);
+    reduced.addEventListener('change', sync);
+    return () => {
+      query.removeEventListener('change', sync);
+      reduced.removeEventListener('change', sync);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!pinned) return;
+    const el = outer.current;
+    const rail = track.current;
+    if (!el || !rail) return;
+
+    let frame = 0;
+    const measure = () => {
+      frame = 0;
+      const rect = el.getBoundingClientRect();
+      /* Progress across only the pinned portion: 0 the moment the section
+         locks, 1 as it releases. Anything looser makes the panels start
+         drifting before the section is actually holding the viewport. */
+      const distance = rect.height - window.innerHeight;
+      const travelled = Math.min(Math.max(-rect.top, 0), distance);
+      const p = distance > 0 ? travelled / distance : 0;
+      const span = rail.scrollWidth - window.innerWidth + 96;
+      rail.style.transform = `translate3d(${-p * Math.max(span, 0)}px,0,0)`;
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(measure);
+    };
+
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    schedule();
+    return () => {
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      cancelAnimationFrame(frame);
+      rail.style.transform = '';
+    };
+  }, [pinned]);
+
+  const panels = (
+    <>
+      {OFFER.map((item, i) => (
         <article
           key={item.index}
-          className="grid grid-cols-1 md:grid-cols-12 gap-y-4 gap-x-8 py-9 md:py-12 border-b u-rule"
+          className="flex w-[85vw] shrink-0 flex-col justify-between border-t u-rule pt-8 sm:w-[60vw] lg:w-[34vw] lg:pt-10"
         >
-          <div className="md:col-span-1">
-            <span className="u-label text-[0.6875rem] text-ember">{item.index}</span>
+          <div>
+            <div className="flex items-baseline justify-between">
+              <span className="u-mark text-lift">{item.index}</span>
+              <span className="u-mark text-cream/35">{String(OFFER.length).padStart(2, '0')}</span>
+            </div>
+            <h3 className="u-display mt-10 text-[clamp(1.9rem,3vw,2.9rem)] lg:mt-16">{item.title}</h3>
           </div>
-          <div className="md:col-span-4">
-            <h3 className="u-display text-[1.9rem] leading-tight">{item.title}</h3>
-          </div>
-          <div className="md:col-span-7">
-            <p className="u-body text-[1.05rem] text-cream/85 max-w-[62ch]">{item.detail}</p>
-          </div>
+          <p className="u-body mt-8 max-w-[44ch] text-[0.95rem] text-cream/65 lg:mt-14">
+            {item.detail}
+          </p>
         </article>
       ))}
-    </div>
+    </>
+  );
 
-    {/* The reciprocity half. Without it the page reads as a subscription pitch
-        and the people worth recruiting will notice. */}
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-8 lg:gap-x-16 mt-24 md:mt-32">
-      <div className="lg:col-span-4">
-        <p className="u-label text-ember mb-6">And what we ask</p>
-        <p className="u-body text-[1.05rem] text-dim max-w-[32ch]">
-          A collective is only worth joining if everyone in it is carrying
-          something.
-        </p>
+  return (
+    <>
+      <div ref={outer} style={pinned ? { height: `${OFFER.length * 62}vh` } : undefined}>
+        <div className={pinned ? 'sticky top-0 flex h-screen flex-col justify-center overflow-hidden' : ''}>
+          <div ref={head} className="mx-auto w-full max-w-[110rem] px-[var(--gut)]">
+            <div className="r-draw h-px w-full bg-cream/25" />
+            <div className="mt-5 flex flex-col justify-between gap-4 md:flex-row md:items-start">
+              <p className="u-mark r-up text-lift">04 / What you get</p>
+              <h2 className="u-display r-up max-w-[18ch] text-[length:var(--t-lg)] md:text-right" style={{ ['--d' as string]: '90ms' }}>
+                Five things that are hard to get on your own.
+              </h2>
+            </div>
+          </div>
+
+          {pinned ? (
+            <div className="mt-16 overflow-hidden lg:mt-24">
+              <div
+                ref={track}
+                className="flex gap-14 pl-[var(--gut)] will-change-transform"
+              >
+                {panels}
+              </div>
+            </div>
+          ) : (
+            <div className="mx-auto mt-14 w-full max-w-[110rem] space-y-12 px-[var(--gut)]">
+              {panels}
+            </div>
+          )}
+        </div>
       </div>
-      <ul className="lg:col-span-8 border-t u-rule">
-        {ASKS.map((ask) => (
-          <li key={ask} className="py-6 border-b u-rule u-body text-[1.15rem] md:text-[1.3rem] text-cream/90">
-            {ask}
-          </li>
-        ))}
-      </ul>
-    </div>
-  </div>
-);
+
+      {/* The reciprocity half, back on the vertical axis. */}
+      <div ref={asks} className="mx-auto w-full max-w-[110rem] px-[var(--gut)] pt-28 md:pt-44">
+        <div className="grid grid-cols-1 gap-y-10 lg:grid-cols-12 lg:gap-x-10">
+          <div className="lg:col-span-4">
+            <p className="u-mark r-up text-lift">And what we ask</p>
+            <p className="u-body r-up mt-6 max-w-[30ch] text-[0.95rem] text-cream/60" style={{ ['--d' as string]: '90ms' }}>
+              A collective is only worth joining if everyone in it is carrying
+              something.
+            </p>
+          </div>
+          <ul className="lg:col-span-7 lg:col-start-6">
+            {ASKS.map((ask, i) => (
+              <li key={ask} className="border-b u-rule py-7 first:border-t">
+                <span className="u-display r-line block text-[clamp(1.35rem,2.3vw,2.1rem)] text-cream/90">
+                  <span style={{ ['--d' as string]: `${i * 80}ms` }}>{ask}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Offer;

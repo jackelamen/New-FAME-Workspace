@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.tsx';
+import Grid from './components/Grid.tsx';
 import Hero from './components/Hero.tsx';
 import Tension from './components/Tension.tsx';
 import Idea from './components/Idea.tsx';
@@ -10,13 +11,13 @@ import Joining from './components/Joining.tsx';
 import Invitation from './components/Invitation.tsx';
 import Footer from './components/Footer.tsx';
 import ContactModal from './components/ContactModal.tsx';
+import { useSmoothScroll } from './lib/motion.ts';
 
-/* The page is an argument, read top to bottom: their problem, the idea, who it
-   is for, what they get, what we ask, who it is not for, how to join. Sections
-   are ordered to answer objections in the order they occur to a reader. */
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [applyOpen, setApplyOpen] = useState(false);
+
+  useSmoothScroll();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -33,42 +34,26 @@ const App: React.FC = () => {
   const openApply = () => setApplyOpen(true);
 
   return (
-    <div id="top" className="min-h-screen bg-void text-cream overflow-x-hidden">
-      <Navbar scrolled={scrolled} onApply={openApply} />
+    <div id="top" className="relative min-h-screen overflow-x-hidden bg-void text-cream">
+      <Grid />
 
-      <main>
-        <Hero onApply={openApply} />
+      <div className="relative z-10">
+        <Navbar scrolled={scrolled} onApply={openApply} />
 
-        <section id="why" className="py-28 md:py-40">
-          <Tension />
-        </section>
+        <main>
+          <Hero onApply={openApply} />
 
-        <section id="idea">
-          <Idea />
-        </section>
+          <section id="why" className="py-36 md:py-56"><Tension /></section>
+          <section id="idea"><Idea /></section>
+          <section id="members" className="py-36 md:py-56"><Members /></section>
+          <section id="offer" className="py-36 md:py-56"><Offer /></section>
+          <section id="fit" className="py-36 md:py-56"><Fit /></section>
+          <section id="joining" className="py-36 md:py-56"><Joining /></section>
+          <section id="apply"><Invitation onApply={openApply} /></section>
+        </main>
 
-        <section id="members" className="py-28 md:py-40">
-          <Members />
-        </section>
-
-        <section id="offer" className="py-28 md:py-40 bg-pitch">
-          <Offer />
-        </section>
-
-        <section id="fit" className="py-28 md:py-40">
-          <Fit />
-        </section>
-
-        <section id="joining" className="py-28 md:py-40 bg-pitch">
-          <Joining />
-        </section>
-
-        <section id="apply">
-          <Invitation onApply={openApply} />
-        </section>
-      </main>
-
-      <Footer />
+        <Footer />
+      </div>
 
       <ContactModal isOpen={applyOpen} onClose={() => setApplyOpen(false)} />
     </div>

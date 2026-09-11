@@ -1,51 +1,105 @@
 import React from 'react';
 import Backdrop from './Backdrop.tsx';
+import { PILLARS } from '../constants.tsx';
+import { useReveal } from '../lib/motion.ts';
 
 interface HeroProps {
   onApply: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onApply }) => (
-  <header className="relative min-h-[100svh] flex flex-col justify-end pt-32 pb-10 overflow-hidden">
-    <Backdrop clip="hero" dim={0.74} />
+/* Sheet 01.
 
-    <div className="relative z-10 max-w-[82rem] mx-auto px-6 lg:px-12 w-full">
-      <p className="u-label text-cream text-scrim mb-8 fade" style={{ animationDelay: '200ms' }}>
-        Forming now · Seoul
-      </p>
+   Three bands rather than a centred stack: annotation across the top, the
+   claim hung off the left edge, the four disciplines as a drawn legend along
+   the bottom. The legend is the acronym doing structural work, and it is the
+   first thing that tells a visitor what the four letters are for. */
+const Hero: React.FC<HeroProps> = ({ onApply }) => {
+  const head = useReveal<HTMLHeadingElement>();
+  const meta = useReveal<HTMLDivElement>();
+  const legend = useReveal<HTMLDivElement>();
 
-      <h1 className="u-display text-scrim text-[clamp(2.6rem,min(7vw,12vh),5.75rem)] max-w-[18ch] rise" style={{ animationDelay: '320ms' }}>
-        A collective for the people who actually make
-        <span className="text-cream/95"> the night happen.</span>
-      </h1>
+  const line = 'r-line';
 
+  return (
+    <header className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden pb-8 pt-28 md:pt-32">
+      <Backdrop clip="hero" dim={0.74} />
+
+      {/* Sheet metadata. Tabular, tiny, unglamorous on purpose: it is the
+          counterweight that makes the display size read as large. */}
       <div
-        className="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-12 items-end mt-14 md:mt-20 border-t u-rule pt-8 fade"
-        style={{ animationDelay: '620ms' }}
+        ref={meta}
+        className="relative z-10 mx-auto w-full max-w-[110rem] px-[var(--gut)]"
       >
-        <p className="md:col-span-6 u-body text-[1.05rem] md:text-[1.2rem] text-cream/90 max-w-[48ch]">
-          FAME is being built as a collective of artists and entrepreneurs across
-          food, artistry, media and events. Based in Seoul. Not limited to it.
-          We are choosing the founding members now.
-        </p>
-
-        <div className="md:col-span-4 md:col-start-9 flex flex-col items-start gap-5">
-          <button
-            onClick={onApply}
-            className="u-label text-[0.6875rem] bg-ember text-void px-8 py-4 hover:bg-cream transition-colors duration-300"
-          >
-            Apply to join
-          </button>
-          <a
-            href="#why"
-            className="u-label text-[0.6875rem] text-cream/75 hover:text-cream transition-colors duration-300"
-          >
-            Read the case first
-          </a>
+        <div className="r-up flex items-baseline justify-between gap-6 border-b u-rule pb-4 text-cream/60">
+          <span className="u-mark text-cream">FAME</span>
+          <span className="u-mark hidden sm:block">Seoul · 37.5665° N</span>
+          <span className="u-mark">Forming 2026</span>
+          <span className="u-mark hidden md:block">Sheet 01 / 04</span>
         </div>
       </div>
-    </div>
-  </header>
-);
+
+      <div className="relative z-10 mx-auto w-full max-w-[110rem] flex-1 px-[var(--gut)] flex items-center">
+        <h1 ref={head} className="u-display text-scrim text-[length:var(--t-hero)] max-w-[15ch]">
+          <span className={line}><span style={{ ['--d' as string]: '0ms' }}>A collective</span></span>
+          <span className={line}><span style={{ ['--d' as string]: '110ms' }}>for the people</span></span>
+          <span className={line}><span style={{ ['--d' as string]: '220ms' }}>who make</span></span>
+          <span className={line}>
+            <span className="italic text-cream/95" style={{ ['--d' as string]: '330ms' }}>
+              the night happen.
+            </span>
+          </span>
+        </h1>
+      </div>
+
+      {/* Legend. Each discipline registers in turn, its rule drawing first. */}
+      <div
+        ref={legend}
+        className="relative z-10 mx-auto w-full max-w-[110rem] px-[var(--gut)]"
+      >
+        <div className="grid grid-cols-2 gap-x-6 gap-y-7 md:grid-cols-4 lg:gap-x-8">
+          {PILLARS.map((pillar, i) => (
+            <div key={pillar.name}>
+              <div
+                className="r-draw h-px w-full bg-cream/25"
+                style={{ ['--d' as string]: `${i * 90}ms` }}
+              />
+              <div className="r-up pt-3" style={{ ['--d' as string]: `${180 + i * 90}ms` }}>
+                <div className="flex items-baseline gap-2.5">
+                  <span className="u-mark text-cream">{pillar.letter}</span>
+                  <span className="u-label text-cream/85">{pillar.name}</span>
+                </div>
+                <p className="u-body mt-1.5 text-[0.8rem] text-cream/60">{pillar.line}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div
+          className="r-up mt-10 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end"
+          style={{ ['--d' as string]: '560ms' }}
+        >
+          <p className="u-body max-w-[54ch] text-[0.9rem] text-cream/70">
+            Founding members are being chosen now, across food, artistry, media
+            and events. Based in Seoul. Not limited to it.
+          </p>
+          <div className="flex shrink-0 items-center gap-7">
+            <button
+              onClick={onApply}
+              className="u-label bg-ember px-8 py-4 text-[length:var(--small)] text-void transition-colors duration-300 hover:bg-cream"
+            >
+              Apply to join
+            </button>
+            <a
+              href="#why"
+              className="u-mark text-cream/70 transition-colors duration-300 hover:text-cream"
+            >
+              Read the case ↓
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
 
 export default Hero;

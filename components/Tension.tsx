@@ -1,35 +1,49 @@
 import React from 'react';
+import { useReveal } from '../lib/motion.ts';
 
-/* The argument opens with the reader's problem, not with us. Nobody joins a
-   collective because the collective is nice; they join because working alone
-   has a ceiling they have already hit. */
-const Tension: React.FC = () => (
-  <div className="max-w-[82rem] mx-auto px-6 lg:px-12">
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-16">
-      <div className="lg:col-span-3">
-        <p className="u-label text-ember">Why this exists</p>
-      </div>
+/* Sheet 02, first half.
 
-      <div className="lg:col-span-9">
-        <p className="u-display text-[clamp(2rem,5vw,4rem)] max-w-[22ch] mb-14 md:mb-20">
-          Seoul is full of people doing excellent work in isolation.
-        </p>
+   Built as a margin note against a statement rather than a heading over a
+   grid. The two supporting paragraphs hang in the left gutter like callouts
+   on a drawing, which puts the reader's problem literally in the margin of
+   the claim. */
+const Tension: React.FC = () => {
+  const root = useReveal<HTMLDivElement>();
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 max-w-[64rem]">
-          <p className="u-body text-[1.05rem] md:text-[1.15rem] text-cream/85">
-            You are good at one thing. The brief wants four. So the job goes to
-            an agency that is worse than you at all of them, and you get called
-            in at the bottom of the chain, on their margin, on their terms.
-          </p>
-          <p className="u-body text-[1.05rem] md:text-[1.15rem] text-dim">
-            Meanwhile the four people who could have done it properly are each
-            sitting alone in a different part of the city, quoting against each
-            other, and guessing at their own rates.
-          </p>
+  return (
+    <div ref={root} className="mx-auto w-full max-w-[110rem] px-[var(--gut)]">
+      <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-12 lg:gap-x-10">
+        <div className="lg:col-span-3">
+          <div className="r-draw h-px w-full bg-cream/25" />
+          <p className="u-mark r-up mt-5 text-lift">02 / Why this exists</p>
+
+          <div className="mt-12 space-y-10 lg:mt-24">
+            <p className="u-body r-up text-[0.95rem] text-cream/75" style={{ ['--d' as string]: '120ms' }}>
+              You are good at one thing. The brief wants four. So the job goes to
+              an agency that is worse than you at all of them, and you get called
+              in at the bottom of the chain, on their margin, on their terms.
+            </p>
+            <p className="u-body r-up text-[0.95rem] text-cream/55" style={{ ['--d' as string]: '220ms' }}>
+              Meanwhile the four people who could have done it properly are each
+              sitting alone in a different part of the city, quoting against each
+              other, and guessing at their own rates.
+            </p>
+          </div>
+        </div>
+
+        <div className="lg:col-span-8 lg:col-start-5">
+          <h2 className="u-display text-[length:var(--t-xl)]">
+            <span className="r-line"><span>Seoul is full of</span></span>
+            <span className="r-line"><span style={{ ['--d' as string]: '90ms' }}>people doing</span></span>
+            <span className="r-line"><span style={{ ['--d' as string]: '180ms' }}>excellent work</span></span>
+            <span className="r-line">
+              <span className="italic text-cream/50" style={{ ['--d' as string]: '270ms' }}>in isolation.</span>
+            </span>
+          </h2>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Tension;
